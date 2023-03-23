@@ -1,0 +1,69 @@
+<?php
+defined('BASEPATH') or exit('No direct script access allowed');
+
+class Home extends CI_Controller
+{
+
+	public function __construct()
+	{
+		parent::__construct();
+		$this->load->library('form_validation');
+
+	}
+
+	/**
+	 * Index Page for this controller.
+	 *
+	 * Maps to the following URL
+	 * 		http://example.com/index.php/welcome
+	 *	- or -
+	 * 		http://example.com/index.php/welcome/index
+	 *	- or -
+	 * Since this controller is set as the default controller in
+	 * config/routes.php, it's displayed at http://example.com/
+	 *
+	 * So any other public methods not prefixed with an underscore will
+	 * map to /index.php/welcome/<method_name>
+	 * @see https://codeigniter.com/userguide3/general/urls.html
+	 */
+	public function index()
+	{
+
+		$data['title'] = "Sign-In E-raport";
+		$this->load->view('layout/header', $data);
+		$this->load->view('auth/login', $data);
+		$this->load->view('layout/footer', $data);
+
+
+	}
+	public function login()
+	{
+		$this->form_validation->set_rules(
+			'username',
+			'Username',
+			'required',
+			[
+				'required' => 'Username Wajib diisi',
+			]
+		);
+		$this->form_validation->set_rules(
+			'password',
+			'password',
+			'required|trim',
+			[
+				'required' => 'Password wajib diisi'
+			]
+		);
+		if ($this->form_validation->run() == FALSE) {
+			$data['title'] = "Sign-In E-raport";
+
+			$this->load->view('layout/header', $data);
+			$this->load->view('auth/login', $data);
+			$this->load->view('layout/footer', $data);
+		} else {
+			// $this->login();
+			echo 'data berhasil';
+		}
+		;
+	}
+}
