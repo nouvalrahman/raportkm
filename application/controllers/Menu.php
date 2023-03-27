@@ -3,7 +3,12 @@ defined('BASEPATH') or exit('No direct script access allowed');
 
 class Menu extends CI_Controller
 {
-
+    public function __construct()
+    {
+        parent::__construct();
+        $this->load->library('form_validation');
+        $this->load->model('Menumodel');
+    }
     /**
      * Index Page for this controller.
      *
@@ -21,11 +26,14 @@ class Menu extends CI_Controller
      */
     public function index()
     {
-        $data['title'] = "Menu";
+        $data['title'] = "Menu - E-Raport";
+        $data['menu'] = $this->Menumodel->get_menu();
         $this->load->view('layout/header', $data);
-        $this->load->view('content/menu', $data);
-        $this->load->view('layout/sidebar', $data);
+        $this->load->view('content/menu/index', $data);
+        // $this->load->view('layout/sidebar', $data);
         $this->load->view('layout/footer', $data);
+        // var_dump($data);
+        // die;
     }
     public function tambah()
     {
