@@ -37,15 +37,81 @@ class Menu extends CI_Controller
     }
     public function tambah()
     {
-
+        $this->form_validation->set_rules(
+            'menu',
+            'Menu',
+            'required',
+            [
+                'required' => '%s Harus Diisi'
+            ]
+        );
+        $this->form_validation->set_rules(
+            'icon',
+            'Icon',
+            'required',
+            [
+                'required' => '%s Harus Diisi'
+            ]
+            );
+        
+            if($this->form_validation->run() == FALSE) {
+                $this->session->set_flashdata('message_error', 'Terdapat Data yang kosong, Silahkan Lengkapi data ');
+                redirect('Menu/tambah');
+            } else {
+                $this->menumodel->tambah();
+                $this->session->set_flashdata('message', 'Data Berhasil Ditambahkan');
+                redirect('Menu/tambah');
+            }
+        
     }
     public function ubah()
     {
+        $this->form_validation->set_rules(
+            'menu',
+            'Menu',
+            'required',
+            [
+                'required' => '%s Harus Diisi'
+            ]
 
+            );
+        $this->form_validation->set_rules(
+            'icon',
+            'Icon',
+            'required',
+            [
+                'required' => '%s Harus Diisi'
+            ]
+            );
+        
+            if($this->form_validation->run() == FALSE) {
+                $this->session->set_flashdata('message_error', 'Terdapat Data yang kosong, Silahkan Lengkapi data ');
+                redirect('content/menu');
+            } else {
+                $this->menumodel->ubah();
+                $this->session->set_flashdata('message', 'Data Berhasil Diubah');
+                redirect('content/menu');
+            }
     }
 
     public function hapus()
     {
+        $this->form_validation->set_rules(
+            'Id',
+            'id',
+            'required',
+            [
+                'required' => '%s Harus Diisi'
+            ]
+        );
 
+        if($this->form_validation->run() == FALSE) {
+            $this->session->set_flashdata('message_error', 'Terdapat Data yang kosong, Silahkan Lengkapi data ');
+            redirect('content/menu');
+        } else {
+            $this->menumodel->hapus();
+            $this->session->set_flashdata('message', 'Data Berhasil Dihapus');
+            redirect('content/menu');
+        }
     }
 }
