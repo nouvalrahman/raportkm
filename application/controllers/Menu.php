@@ -52,17 +52,17 @@ class Menu extends CI_Controller
             [
                 'required' => '%s Harus Diisi'
             ]
-            );
-        
-            if($this->form_validation->run() == FALSE) {
-                $this->session->set_flashdata('message_error', 'Terdapat Data yang kosong, Silahkan Lengkapi data ');
-                redirect('Menu/tambah');
-            } else {
-                $this->menumodel->tambah();
-                $this->session->set_flashdata('message', 'Data Berhasil Ditambahkan');
-                redirect('Menu/tambah');
-            }
-        
+        );
+
+        if ($this->form_validation->run() == FALSE) {
+            $this->session->set_flashdata('message_error', 'Terdapat Data yang kosong, Silahkan Lengkapi data ');
+            redirect('Menu/tambah');
+        } else {
+            $this->Menumodel->tambah();
+            $this->session->set_flashdata('message', 'Data Berhasil Ditambahkan');
+            redirect('Menu/tambah');
+        }
+
     }
     public function ubah()
     {
@@ -74,7 +74,7 @@ class Menu extends CI_Controller
                 'required' => '%s Harus Diisi'
             ]
 
-            );
+        );
         $this->form_validation->set_rules(
             'icon',
             'Icon',
@@ -82,16 +82,16 @@ class Menu extends CI_Controller
             [
                 'required' => '%s Harus Diisi'
             ]
-            );
-        
-            if($this->form_validation->run() == FALSE) {
-                $this->session->set_flashdata('message_error', 'Terdapat Data yang kosong, Silahkan Lengkapi data ');
-                redirect('content/menu');
-            } else {
-                $this->menumodel->ubah();
-                $this->session->set_flashdata('message', 'Data Berhasil Diubah');
-                redirect('content/menu');
-            }
+        );
+
+        if ($this->form_validation->run() == FALSE) {
+            $this->session->set_flashdata('message_error', 'Terdapat Data yang kosong, Silahkan Lengkapi data ');
+            redirect('content/menu');
+        } else {
+            $this->Menumodel->ubah();
+            $this->session->set_flashdata('message', 'Data Berhasil Diubah');
+            redirect('content/menu');
+        }
     }
 
     public function hapus()
@@ -105,13 +105,15 @@ class Menu extends CI_Controller
             ]
         );
 
-        if($this->form_validation->run() == FALSE) {
+        if ($this->form_validation->run() == FALSE) {
             $this->session->set_flashdata('message_error', 'Terdapat Data yang kosong, Silahkan Lengkapi data ');
-            redirect('content/menu');
+            redirect('Menu/index');
         } else {
-            $this->menumodel->hapus();
+            $this->Menumodel->hapus();
             $this->session->set_flashdata('message', 'Data Berhasil Dihapus');
-            redirect('content/menu');
+            redirect('Menu/index');
+            // var_dump('id');
+            // die;
         }
     }
 }

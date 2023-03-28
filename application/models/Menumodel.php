@@ -10,7 +10,7 @@ class Menumodel extends CI_Model
 
     public function tambah()
     {
-        $data =[
+        $data = [
             'menu' => htmlspecialchars($this->input->post('menu')),
             'icon' => htmlspecialchars($this->input->post('icon')),
             'is_active' => 1,
@@ -35,6 +35,7 @@ class Menumodel extends CI_Model
         $this->db->set('is_active', 0);
         $this->db->where('id', $id);
         $this->db->update('menu');
+
     }
 }
 

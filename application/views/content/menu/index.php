@@ -11,12 +11,13 @@
                     </div>
                     <div class="col">
                         <div class="float-end">
-                            <a href="#" class="btn btn-sm btn-primary" data-bs-toggle="modal" data-bs-target="#staticBackdrop">Tambah</a>
+                            <a href="#" class="btn btn-sm btn-primary" data-bs-toggle="modal"
+                                data-bs-target="#tambahmodal">Tambah</a>
                         </div>
                     </div>
                 </div>
             </div>
-            
+
             <div class="card-body">
                 <div class="table-responsive text-nowrap py-2 px-2">
                     <table class="table table-striped dt-responsive nowrap datatables py-1 px-1">
@@ -30,49 +31,63 @@
                         </thead>
                         <tbody class="table-border-bottom-0">
                             <?php
-                                $no = 1;
-                                ?>
-                            <?php foreach ($menu as $m) : ?>
+                            $no = 1;
+                            ?>
+                            <?php foreach ($menu as $m): ?>
                                 <tr>
-                                    <td><?= $no++ ?></td>
-                                    <td><?= $m['menu'] ?></td>
                                     <td>
-                                        <i class="><?= $m['icon'] ?>"></i>
+                                        <?= $no++ ?>
                                     </td>
                                     <td>
-                                        <a href="#" class="btn btn-sm btn-warning" data-bs-toggle="modal" data-bs-target="#ubahmodal<?= $m['id']?>">Ubah</a>
-                                        <a href="#" class="btn btn-sm btn-danger" data-bs-toggle="modal" data-bs-target="#hapusmodal<?= $m['id'] ?>">Hapus</a>
+                                        <?= $m['menu'] ?>
+                                    </td>
+                                    <td>
+                                        <!-- <i class="<?= $m['icon'] ?>"></i> -->
+                                        <i class='<?= $m['icon'] ?>'></i>
+
+                                    </td>
+                                    <td>
+                                        <a href="#" class="btn btn-sm btn-warning" data-bs-toggle="modal"
+                                            data-bs-target="#ubahmodal<?= $m['id'] ?>">Ubah</a>
+                                        <a href="#" class="btn btn-sm btn-danger" data-bs-toggle="modal"
+                                            data-bs-target="#hapusmodal<?= $m['id'] ?>">Hapus</a>
                                     </td>
                                 </tr>
-                                        <!-- Modal Ubah -->
-                                <div class="modal fade" id="ubahmodal<?= $m['id']?>" tabindex="-1" aria-hidden="true">
+                                <!-- Modal Ubah -->
+                                <div class="modal fade" id="ubahmodal<?= $m['id'] ?>" tabindex="-1" aria-hidden="true">
                                     <div class="modal-dialog" role="document">
-                                        <form action="<?= base_url('Menu/ubah')?>" method="post">
+                                        <form action="<?= base_url('Menu/ubah') ?>" method="post">
                                             <div class="modal-content">
                                                 <div class="modal-header">
                                                     <h5 class="modal-title" id="exampleModalLabel1">Ubah Menu</h5>
-                                                    <button type="button" class="btn-close" data-bd-toggle="modal" aria-label="Close"></button>
+                                                    <button type="button" class="btn-close" data-bd-toggle="modal"
+                                                        aria-label="Close"></button>
                                                 </div>
                                                 <div class="modal-body">
                                                     <div class="row">
                                                         <div class="col">
                                                             <label for="type" class="form-label">Menu</label>
-                                                            <input type="hidden" id="id" name="id" class="form-control" placeholder="Masukkan ID" value="<?= $m['id']?>"/>
-                                                            <input type="text" id="menu" name="menu" class="form-control" placeholder="Masukkan Menu" value="<?= $m['menu']?>"/>
-                                                            <?= form_error('menu', '<small class="text-danger">', '</small>')?>
+                                                            <input type="hidden" id="id" name="id" class="form-control"
+                                                                placeholder="Masukkan ID" value="<?= $m['id'] ?>" />
+                                                            <input type="text" id="menu" name="menu" class="form-control"
+                                                                placeholder="Masukkan Menu" value="<?= $m['menu'] ?>" />
+                                                            <?= form_error('menu', '<small class="text-danger">', '</small>') ?>
                                                         </div>
                                                     </div>
                                                     <div class="row">
                                                         <div class="col">
                                                             <label for="type" class="form-label">icon</label>
-                                                            <input type="text" id="icon" name="icon" class="form-control" placeholder="Masukkan Icon" value="<?= $m['icon']?>"/>
-                                                            <small class="text-muted">Ex. menu-icon tf-icon bx bx-cube-alt</small>
-                                                            <?= form_error('icon', '<small class="text-danger">', '</small>')?>
+                                                            <input type="text" id="icon" name="icon" class="form-control"
+                                                                placeholder="Masukkan Icon" value="<?= $m['icon'] ?>" />
+                                                            <small class="text-muted">Ex. menu-icon tf-icon bx
+                                                                bx-cube-alt</small>
+                                                            <?= form_error('icon', '<small class="text-danger">', '</small>') ?>
                                                         </div>
                                                     </div>
                                                 </div>
                                                 <div class="modal-footer">
-                                                    <button type="button" class="btn btn-outline-secondary" data-bs-toggle="modal">Close</button>
+                                                    <button type="button" class="btn btn-outline-secondary"
+                                                        data-bs-toggle="modal">Close</button>
                                                     <button type="submit" class="btn btn-warning">Ubah</button>
                                                 </div>
                                             </div>
@@ -81,42 +96,27 @@
                                 </div>
                                 <!-- End modal ubah -->
 
-                                <!-- Button trigger modal -->
-
-                                    <!-- Modal -->
-                                    <div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
-                                      <div class="modal-dialog">
-                                        <div class="modal-content">
-                                          <div class="modal-header">
-                                            <h5 class="modal-title" id="staticBackdropLabel">Modal title</h5>
-                                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                                          </div>
-                                          <div class="modal-body">
-                                            ...
-                                          </div>
-                                          <div class="modal-footer">
-                                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                                            <button type="button" class="btn btn-primary">Understood</button>
-                                          </div>
-                                        </div>
-                                      </div>
-                                    </div>
                                 <!-- modal hapus -->
                                 <div class="modal fade" id="hapusmodal<?= $m['id'] ?>" tabindex="-1" aria-hidden="true">
                                     <div class="modal-dialog" role="document">
-                                        <form action="<?= base_url('content/menu/hapus') ?>" method="post">
+                                        <form action="<?= base_url('Menu/hapus') ?>" method="post">
                                             <div class="modal-content">
                                                 <div class="modal-header">
                                                     <h5 class="modal-title" id="exampleModalLabel1">Hapus Menu</h5>
-                                                    <button type="button" class="btn-close" data-bs-toggle="modal" data-bs-target="Close"></button>
+                                                    <button type="button" class="btn-close" data-bs-toggle="modal"
+                                                        data-bs-target="Close"></button>
                                                 </div>
                                                 <div class="modal-body">
-                                                    <p>Apakah Anda Yakin Ingin Menghapus Data <b><?= $m['menu']?> ?</b> </p>
+                                                    <p>Apakah Anda Yakin Ingin Menghapus Data <b>
+                                                            <?= $m['menu'] ?> ?
+                                                        </b> </p>
                                                     <p>Data Yang Dihapus Tidak Dapat dikembalikan.</p>
                                                 </div>
                                                 <div class="modal-footer">
-                                                    <input type="hidden" id="id" name="id" class="form-control" placeholder="Enter ID" vlaue="<?= $m['id']?>" />
-                                                    <button type="button" class="btn btn-outline-secondary" data-bs-dismiss="modal"> Close</button>
+                                                    <input type="hidden" id="id" name="id" class="form-control"
+                                                        placeholder="Enter ID" value="<?= $m['id'] ?>" />
+                                                    <button type="button" class="btn btn-outline-secondary"
+                                                        data-bs-dismiss="modal"> Close</button>
                                                     <button type="submit" class="btn btn-danger">Hapus</button>
                                                 </div>
                                             </div>
@@ -124,48 +124,51 @@
                                     </div>
                                 </div>
                                 <!-- end modal hapus -->
-                                <?php endforeach?>
+                            <?php endforeach ?>
                         </tbody>
                     </table>
                 </div>
             </div>
-            
-                <!-- modal tambah -->
-                <div class="modal fade" id="tambahmodal" tabindex="-1" aria-hidden="true">
-                    <div class="modal-dialog" role="document">
-                        <form action="<?= base_url('Menu/tambah') ?>" method="post">
-                            <div class="modal-content">
-                                <div class="modal-header">
-                                    <h5 class="modal-title" id="exampleModalLabel1">Tambah Menu</h5>
-                                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                                </div>
-                                <div class="modal-body">
-                                    <div class="row">
-                                        <div class="col mb-3">
-                                            <label for="type" class="form-label">Menu</label>
-                                            <input type="text" id="menu" name="menu" class="form-control" placeholder="Enter Menu" />
-                                            <?= form_error('menu', '<small class="text-danger">', '</small>') ?>
-                                        </div>
-                                    </div>
-                                    <div   div class="row">
-                                        <div class="col mb-3">
-                                            <label for="type" class="form-label">Icon</label>
-                                            <input type="text" id="icon" name="icon" class="form-control" placeholder="Enter Icon" />
-                                            <small class="text-muted">Ex. menu-icon tf-icons bx bx-cube-alt</small>
-                                            <?= form_error('icon', '<small class="text-danger">', '</small>') ?>
-                                        </div>
+
+            <!-- modal tambah -->
+            <div class="modal fade" id="tambahmodal" tabindex="-1" aria-hidden="true">
+                <div class="modal-dialog" role="document">
+                    <form action="<?= base_url('Menu/tambah') ?>" method="post">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h5 class="modal-title" id="exampleModalLabel1">Tambah Menu</h5>
+                                <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                    aria-label="Close"></button>
+                            </div>
+                            <div class="modal-body">
+                                <div class="row">
+                                    <div class="col mb-3">
+                                        <label for="type" class="form-label">Menu</label>
+                                        <input type="text" id="menu" name="menu" class="form-control"
+                                            placeholder="Enter Menu" />
+                                        <?= form_error('menu', '<small class="text-danger">', '</small>') ?>
                                     </div>
                                 </div>
-                                <div class="modal-footer">
-                                    <button type="button" class="btn btn-outline-secondary" data-bs-dismiss="modal">
-                                    Close
-                                    </button>
-                                    <button type="submit" class="btn btn-primary">Tambah</button>
+                                <div div class="row">
+                                    <div class="col mb-3">
+                                        <label for="type" class="form-label">Icon</label>
+                                        <input type="text" id="icon" name="icon" class="form-control"
+                                            placeholder="Enter Icon" />
+                                        <small class="text-muted">Ex. menu-icon tf-icons bx bx-cube-alt</small>
+                                        <?= form_error('icon', '<small class="text-danger">', '</small>') ?>
+                                    </div>
                                 </div>
                             </div>
-                        </form>
-                    </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-outline-secondary" data-bs-dismiss="modal">
+                                    Close
+                                </button>
+                                <button type="submit" class="btn btn-primary">Tambah</button>
+                            </div>
+                        </div>
+                    </form>
                 </div>
+            </div>
         </div>
     </div>
 </div>
