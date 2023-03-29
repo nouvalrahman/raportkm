@@ -40,7 +40,7 @@ class Submenu extends CI_Controller
         $data['submenu_join'] = $this->Submenumodel->join_menu_submenu();
         $this->load->view('layout/header', $data);
         $this->load->view('content/submenu/index', $data);
-        // $this->load->view('layout/sidebar', $data);
+        $this->load->view('layout/sidebar', $data);
         $this->load->view('layout/footer', $data);
     }
     public function tambah()

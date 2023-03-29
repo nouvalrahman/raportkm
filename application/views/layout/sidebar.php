@@ -17,15 +17,15 @@
         <!-- TES -->
         <?php
         $role_id = $this->session->userdata('role_id');
-        $queryMenu = "SELECT `menu`.`id`, `menu`, `icon`
-                FROM `menu` JOIN `useraccess_menu`
-                ON `menu`.`id` = `useraccess_menu`.`menu_id`
-                WHERE `useraccess_menu`.`role_id` = $role_id
-                AND `menu`.`is_active` = 1 
-                ORDER BY `useraccess_menu`.`menu_id` ASC
-                ";
+        // $queryMenu = "SELECT `menu`.`id`, `menu`, `icon`
+        //         FROM `menu` JOIN `useraccess_menu`
+        //         ON `menu`.`id` = `useraccess_menu`.`menu_id`
+        //         WHERE `useraccess_menu`.`role_id` = $role_id
+        //         AND `menu`.`is_active` = 1 
+        //         ORDER BY `useraccess_menu`.`menu_id` ASC
+        //         ";
 
-        $menu = $this->db->query($queryMenu)->result_array();
+        // $menu = $this->db->query($queryMenu)->result_array();
         // var_dump($menu);
         // die;
         ?>
@@ -52,11 +52,11 @@
                 $menuId = $m['id'];
                 // $querysubmenu = "SELECT * FROM `sub_menu` WHERE `menu_id` = $menuId AND is_active = 1";
                 $querysubmenu = "SELECT *
-                        FROM `sub_menu` JOIN `menu`
-                        ON `sub_menu`.`menu_id` = `menu`.`id`
-                        WHERE `sub_menu`.`menu_id` = $menuId
+                        FROM `submenu` JOIN `menu`
+                        ON `submenu`.`menu_id` = `menu`.`id`
+                        WHERE `submenu`.`menu_id` = $menuId
                         -- WHERE `sub_menu`.`menu_id` = {$m['id']}
-                        AND `sub_menu`.`is_active` = 1
+                        AND `submenu`.`is_active` = 1
                         ";
 
                 // <!-- END QUERY SUBMENU -->
