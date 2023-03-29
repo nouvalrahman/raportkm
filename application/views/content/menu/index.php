@@ -17,6 +17,17 @@
                     </div>
                 </div>
             </div>
+            <?php if ($this->session->flashdata('message')) : ?>
+            <div class="alert alert-success alert-dismissible" role="alert">
+                <?= $this->session->flashdata('message') ?>
+                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+            </div>
+        <?php elseif ($this->session->flashdata('message_error')) : ?>
+            <div class="alert alert-danger alert-dismissible" role="alert">
+                <?= $this->session->flashdata('message_error') ?>
+                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+            </div>
+        <?php endif ?>
 
             <div class="card-body">
                 <div class="table-responsive text-nowrap py-2 px-2">
@@ -42,8 +53,8 @@
                                         <?= $m['menu'] ?>
                                     </td>
                                     <td>
-                                        <!-- <i class="<?= $m['icon'] ?>"></i> -->
-                                        <i class='<?= $m['icon'] ?>'></i>
+                                    <i class="<?= $m['icon'] ?>"></i>
+                                        <!-- <i class='bx bxl-xing'></i> -->
 
                                     </td>
                                     <td>
@@ -60,8 +71,8 @@
                                             <div class="modal-content">
                                                 <div class="modal-header">
                                                     <h5 class="modal-title" id="exampleModalLabel1">Ubah Menu</h5>
-                                                    <button type="button" class="btn-close" data-bd-toggle="modal"
-                                                        aria-label="Close"></button>
+                                                    <!-- <button type="button" class="btn-close" data-bd-dismiss="modal"
+                                                        aria-label="Close"></button> -->
                                                 </div>
                                                 <div class="modal-body">
                                                     <div class="row">
@@ -103,8 +114,8 @@
                                             <div class="modal-content">
                                                 <div class="modal-header">
                                                     <h5 class="modal-title" id="exampleModalLabel1">Hapus Menu</h5>
-                                                    <button type="button" class="btn-close" data-bs-toggle="modal"
-                                                        data-bs-target="Close"></button>
+                                                    <!-- <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                                        data-bs-target="Close"></button> -->
                                                 </div>
                                                 <div class="modal-body">
                                                     <p>Apakah Anda Yakin Ingin Menghapus Data <b>
@@ -137,8 +148,8 @@
                         <div class="modal-content">
                             <div class="modal-header">
                                 <h5 class="modal-title" id="exampleModalLabel1">Tambah Menu</h5>
-                                <button type="button" class="btn-close" data-bs-dismiss="modal"
-                                    aria-label="Close"></button>
+                                <!-- <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                    aria-label="Close"></button> -->
                             </div>
                             <div class="modal-body">
                                 <div class="row">
