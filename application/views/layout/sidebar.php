@@ -13,7 +13,7 @@
 
     <div class="menu-inner-shadow"></div>
 
-    <ul class="menu-inner py-1 mt-4">
+    <ul class="menu-inner py-3 mt-4">
         <!-- TES -->
         <?php
         $role_id = $this->session->userdata('role_id');
