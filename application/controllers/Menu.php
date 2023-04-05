@@ -58,7 +58,7 @@ class Menu extends CI_Controller
             $this->session->set_flashdata('message_error', 'Terdapat Data yang kosong, Silahkan Lengkapi data ');
             redirect('Menu/tambah');
         } else {
-            $this->Menumodel->tambah();
+            $this->menumodel->tambah();
             $this->session->set_flashdata('message', 'Data Berhasil Ditambahkan');
             redirect('Menu/tambah');
         }
@@ -88,7 +88,7 @@ class Menu extends CI_Controller
             $this->session->set_flashdata('message_error', 'Terdapat Data yang kosong, Silahkan Lengkapi data ');
             redirect('content/menu');
         } else {
-            $this->Menumodel->ubah();
+            $this->menumodel->ubah();
             $this->session->set_flashdata('message', 'Data Berhasil Diubah');
             redirect('content/menu');
         }
@@ -107,13 +107,11 @@ class Menu extends CI_Controller
 
         if ($this->form_validation->run() == FALSE) {
             $this->session->set_flashdata('message_error', 'Terdapat Data yang kosong, Silahkan Lengkapi data ');
-            redirect('Menu/index');
+            redirect('content/menu');
         } else {
-            $this->Menumodel->hapus();
+            $this->menumodel->hapus();
             $this->session->set_flashdata('message', 'Data Berhasil Dihapus');
-            redirect('Menu/index');
-            // var_dump('id');
-            // die;
+            redirect('content/menu');
         }
     }
 }

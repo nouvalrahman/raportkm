@@ -42,9 +42,7 @@
                                         <?= $m['menu'] ?>
                                     </td>
                                     <td>
-                                        <!-- <i class="<?= $m['icon'] ?>"></i> -->
-                                        <i class='<?= $m['icon'] ?>'></i>
-
+                                        <i class="<?= $m['icon'] ?>"></i>
                                     </td>
                                     <td>
                                         <a href="#" class="btn btn-sm btn-warning" data-bs-toggle="modal"
@@ -99,7 +97,7 @@
                                 <!-- modal hapus -->
                                 <div class="modal fade" id="hapusmodal<?= $m['id'] ?>" tabindex="-1" aria-hidden="true">
                                     <div class="modal-dialog" role="document">
-                                        <form action="<?= base_url('Menu/hapus') ?>" method="post">
+                                        <form action="<?= base_url('content/menu/hapus') ?>" method="post">
                                             <div class="modal-content">
                                                 <div class="modal-header">
                                                     <h5 class="modal-title" id="exampleModalLabel1">Hapus Menu</h5>
@@ -114,7 +112,7 @@
                                                 </div>
                                                 <div class="modal-footer">
                                                     <input type="hidden" id="id" name="id" class="form-control"
-                                                        placeholder="Enter ID" value="<?= $m['id'] ?>" />
+                                                        placeholder="Enter ID" vlaue="<?= $m['id'] ?>" />
                                                     <button type="button" class="btn btn-outline-secondary"
                                                         data-bs-dismiss="modal"> Close</button>
                                                     <button type="submit" class="btn btn-danger">Hapus</button>
