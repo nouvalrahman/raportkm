@@ -8,6 +8,7 @@ class Menu extends CI_Controller
         parent::__construct();
         $this->load->library('form_validation');
         $this->load->model('Menumodel');
+        $this->load->library('session');
     }
     /**
      * Index Page for this controller.
@@ -86,11 +87,11 @@ class Menu extends CI_Controller
 
         if ($this->form_validation->run() == FALSE) {
             $this->session->set_flashdata('message_error', 'Terdapat Data yang kosong, Silahkan Lengkapi data ');
-            redirect('content/menu');
+            redirect('Menu/index');
         } else {
             $this->menumodel->ubah();
             $this->session->set_flashdata('message', 'Data Berhasil Diubah');
-            redirect('content/menu');
+            redirect('Menu/index');
         }
     }
 
