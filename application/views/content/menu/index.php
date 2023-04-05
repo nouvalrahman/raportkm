@@ -17,17 +17,17 @@
                     </div>
                 </div>
             </div>
-            <?php if ($this->session->flashdata('message')) : ?>
-            <div class="alert alert-success alert-dismissible" role="alert">
-                <?= $this->session->flashdata('message') ?>
-                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-            </div>
-        <?php elseif ($this->session->flashdata('message_error')) : ?>
-            <div class="alert alert-danger alert-dismissible" role="alert">
-                <?= $this->session->flashdata('message_error') ?>
-                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-            </div>
-        <?php endif ?>
+            <?php if ($this->session->flashdata('message')): ?>
+                <div class="alert alert-success alert-dismissible" role="alert">
+                    <?= $this->session->flashdata('message') ?>
+                    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                </div>
+            <?php elseif ($this->session->flashdata('message_error')): ?>
+                <div class="alert alert-danger alert-dismissible" role="alert">
+                    <?= $this->session->flashdata('message_error') ?>
+                    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                </div>
+            <?php endif ?>
 
             <div class="card-body">
                 <div class="table-responsive text-nowrap py-2 px-2">
@@ -53,13 +53,12 @@
                                         <?= $m['menu'] ?>
                                     </td>
                                     <td>
-<<<<<<< HEAD
+
+                                        <!-- <i class="<?= $m['icon'] ?>"></i> -->
                                         <i class="<?= $m['icon'] ?>"></i>
-=======
-                                    <i class="<?= $m['icon'] ?>"></i>
                                         <!-- <i class='bx bxl-xing'></i> -->
 
->>>>>>> ad4abf8bbff2d1657711433422082aceadc8aa8e
+
                                     </td>
                                     <td>
                                         <a href="#" class="btn btn-sm btn-warning" data-bs-toggle="modal"

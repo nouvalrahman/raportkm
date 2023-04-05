@@ -1,84 +1,144 @@
-<!-- Menu -->
-
-<aside id="layout-menu" class="layout-menu menu-vertical menu bg-menu-theme">
-    <div class="app-brand demo">
+<div class="sidebar ">
+    <div class="logo-details">
         <a href="#" class="app-brand-link">
             <img src="<?= base_url('assets/img/smamita.png') ?>" alt="" class="img-fluid mb-2">
         </a>
-
-        <a href="javascript:void(0);" class="layout-menu-toggle menu-link text-large ms-auto d-block d-xl-none">
-            <i class="bx bx-chevron-left bx-sm align-middle"></i>
-        </a>
     </div>
+    <?php foreach ($menu as $m): ?>
 
-    <div class="menu-inner-shadow"></div>
 
-    <ul class="menu-inner py-3 mt-4">
-        <!-- TES -->
-        <?php
-        $role_id = $this->session->userdata('role_id');
-        // $queryMenu = "SELECT `menu`.`id`, `menu`, `icon`
-        //         FROM `menu` JOIN `useraccess_menu`
-        //         ON `menu`.`id` = `useraccess_menu`.`menu_id`
-        //         WHERE `useraccess_menu`.`role_id` = $role_id
-        //         AND `menu`.`is_active` = 1 
-        //         ORDER BY `useraccess_menu`.`menu_id` ASC
-        //         ";
-
-        // $menu = $this->db->query($queryMenu)->result_array();
-        // var_dump($menu);
-        // die;
-        ?>
-        <!-- END -->
-        <?php foreach ($menu as $m): ?>
-            <?php
-            // var_dump($this->uri->segment(1));
-            // var_dump($m['menu']);
-            // var_dump($this->uri->segment(2));
-            // die;
-            // stripos($this->uri->segment(1), $m['menu']) !== FALSE ->>> insensitive
-            // strpos($this->uri->segment(1), $m['menu']) !== FALSE ->>> 
-            ?>
-
-            <li class="menu-item <?php if (stripos($this->uri->segment(1), $m['menu']) !== FALSE) {
-                echo "active open";
-            } ?>">
-                <a href="javascript:void(0);" class="menu-link menu-toggle ">
-                    <i class="<?= $m['icon'] ?>"></i>
-                    <div data-i18n="<?= $m['menu'] ?>"><?= $m['menu'] ?></div>
+        <ul class="nav-links">
+            <li>
+                <a href="#">
+                    <i class='bx bx-home-circle'></i>
+                    <span class="link_name">Dashboard</span>
                 </a>
-
-                <?php
-                $menuId = $m['id'];
-                // $querysubmenu = "SELECT * FROM `sub_menu` WHERE `menu_id` = $menuId AND is_active = 1";
-                $querysubmenu = "SELECT *
-                        FROM `submenu` JOIN `menu`
-                        ON `submenu`.`menu_id` = `menu`.`id`
-                        WHERE `submenu`.`menu_id` = $menuId
-                        -- WHERE `sub_menu`.`menu_id` = {$m['id']}
-                        AND `submenu`.`is_active` = 1
-                        ";
-
-                // <!-- END QUERY SUBMENU -->
-                // <!-- result array query builder -->
-                $submenu = $this->db->query($querysubmenu)->result_array();
-                ?>
-
-                <ul class="menu-sub">
-                    <?php foreach ($submenu as $sm): ?>
-                        <li class="menu-item <?php if (stripos($this->uri->segment(2), $sm['title']) !== FALSE) {
-                            echo "active";
-                        } ?>">
-                            <a href="<?= base_url($sm['url']) ?>" class="menu-link">
-                                
-                                <div data-i18n="<?= $sm['title'] ?>"><?= $sm['title'] ?></div>
-                               
-                            </a>
-                        </li>
-                    <?php endforeach ?>
+                <ul class="sub-menu blank">
+                    <li><a class="link_name" href="">Menu</a></li>
                 </ul>
+            </li>
+            <li>
+                <div class="iocn-link">
+                    <a href="#">
+                        <i class='bx bx-lock-open-alt'></i>
+                        <span class="link_name">Access</span>
+                    </a>
+                    <i class='bx bxs-chevron-down arrow'></i>
+                </div>
+                <ul class="sub-menu">
+
+                    <li><a href="<?= base_url('Menu/index') ?>">Menu</a></li>
+                    <li><a href="<?= base_url('Submenu/index') ?>">Sub Menu</a></li>
+                    <li><a href="#">Useraccess</a></li>
+                </ul>
+            </li>
+            <li>
+                <div class="iocn-link">
+                    <a href="#">
+                        <i class='bx bx-box'></i>
+                        <span class="link_name">Masters</span>
+                    </a>
+                    <i class='bx bxs-chevron-down arrow'></i>
+                </div>
+                <ul class="sub-menu">
+                    <li><a class="link_name" href="#">Posts</a></li>
+                    <li><a href="#">Identitas Sekolah</a></li>
+                    <li><a href="#">Users</a></li>
+                    <li><a href="#">Kelas</a></li>
+                    <li><a href="#">Siswa</a></li>
+                    <li><a href="#">Mata pelajaran</a></li>
+                </ul>
+            </li>
+            <li>
+                <a href="#">
+                    <i class='bx bx-pie-chart-alt-2'></i>
+                    <span class="link_name">Analytics</span>
+                </a>
+                <ul class="sub-menu blank">
+                    <li><a class="link_name" href="#">Analytics</a></li>
+                </ul>
+            </li>
+            <li>
+                <a href="#">
+                    <i class='bx bx-line-chart'></i>
+                    <span class="link_name">Chart</span>
+                </a>
+                <ul class="sub-menu blank">
+                    <li><a class="link_name" href="#">Chart</a></li>
+                </ul>
+            </li>
+            <li>
+                <div class="iocn-link">
+                    <a href="#">
+                        <i class='bx bx-plug'></i>
+                        <span class="link_name">Plugins</span>
+                    </a>
+                    <i class='bx bxs-chevron-down arrow'></i>
+                </div>
+                <ul class="sub-menu">
+                    <li><a class="link_name" href="#">Plugins</a></li>
+                    <li><a href="#">UI Face</a></li>
+                    <li><a href="#">Pigments</a></li>
+                    <li><a href="#">Box Icons</a></li>
+                </ul>
+            </li>
+            <li>
+                <a href="#">
+                    <i class='bx bx-compass'></i>
+                    <span class="link_name">Explore</span>
+                </a>
+                <ul class="sub-menu blank">
+                    <li><a class="link_name" href="#">Explore</a></li>
+                </ul>
+            </li>
+            <li>
+                <a href="#">
+                    <i class='bx bx-history'></i>
+                    <span class="link_name">History</span>
+                </a>
+                <ul class="sub-menu blank">
+                    <li><a class="link_name" href="#">History</a></li>
+                </ul>
+            </li>
+            <li>
+                <a href="#">
+                    <i class='bx bx-cog'></i>
+                    <span class="link_name">Setting</span>
+                </a>
+                <ul class="sub-menu blank">
+                    <li><a class="link_name" href="#">Setting</a></li>
+                </ul>
+            </li>
+            <li>
+                <div class="profile-details">
+
+                    <div class="name-job">
+                        <i class='bx bx-log-in'></i>
+                    </div>
+                    <i class='bx bx-log-out'></i>
+                </div>
             </li>
         <?php endforeach ?>
     </ul>
-</aside>
-<!-- / Menu -->
+</div>
+<!-- <section class="home-section">
+    <div class="home-content">
+        <i class='bx bx-menu'></i>
+        <span class="text">Drop Down Sidebar</span>
+    </div>
+</section> -->
+<script>
+    let arrow = document.querySelectorAll(".arrow");
+    for (var i = 0; i < arrow.length; i++) {
+        arrow[i].addEventListener("click", (e) => {
+            let arrowParent = e.target.parentElement.parentElement;//selecting main parent of arrow
+            arrowParent.classList.toggle("showMenu");
+        });
+    }
+    let sidebar = document.querySelector(".sidebar");
+    let sidebarBtn = document.querySelector(".bx-menu");
+    console.log(sidebarBtn);
+    sidebarBtn.addEventListener("click", () => {
+        sidebar.classList.toggle("close");
+    });
+</script>

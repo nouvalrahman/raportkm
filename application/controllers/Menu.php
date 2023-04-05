@@ -31,7 +31,7 @@ class Menu extends CI_Controller
         $data['menu'] = $this->Menumodel->get_menu();
         $this->load->view('layout/header', $data);
         $this->load->view('content/menu/index', $data);
-        // $this->load->view('layout/sidebar', $data);
+        $this->load->view('layout/sidebar', $data);
         $this->load->view('layout/footer', $data);
         // var_dump($data);
         // die;

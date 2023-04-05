@@ -9,6 +9,7 @@ class User extends CI_Controller
         $this->load->library('form_validation');
         $this->load->model('Usermodel');
         $this->load->model('Rolemodel');
+        $this->load->model('Menumodel');
         $this->load->library('session');
     }
     /**
@@ -31,6 +32,7 @@ class User extends CI_Controller
         $data['title'] = "User - E-Raport";
         $data['user'] = $this->Usermodel->get_user();
         $data['role'] = $this->Rolemodel->get_role();
+        $data['menu'] = $this->Menumodel->get_menu();
         $data['user_join'] = $this->Usermodel->join_user_role();
         // var_dump($data['user_join']);
         // die;
@@ -41,15 +43,15 @@ class User extends CI_Controller
     }
     public function tambah()
     {
-        
+
     }
     public function ubah()
     {
-        
+
     }
 
     public function hapus()
     {
-        
+
     }
 }
