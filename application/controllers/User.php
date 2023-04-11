@@ -43,7 +43,55 @@ class User extends CI_Controller
     }
     public function tambah()
     {
+        $this->form_validation->set_rules(
+            'Username',
+            'username',
+            'required',
+            [
+                'required' => '%s Harus Diisi'
+            ]
+        );
+        $this->form_validation->set_rules(
+            'password',
+            'Password',
+            'required|trim|min_length[5]|matches[passwordconfirm]',
+            [
+                'required' => '%s Harus DIisi',
+                'min_length' => 'Password minimum 5 karakter',
+                'matches'   => 'password tidak sama'
+            ]
+        );
+        $this->form_validation->set_rules(
+            'passwordconfirm',
+            'password confirm',
+            'required|trim|min_length[5]|matches[password]',
+            [
+                'required' => '%s Harus Diisi',
+                'matches' => 'password tidak sama',
+                'min_length' => 'password minimum 5 karakter'
+            ]
+        );
+        $this->form_validation->set_rules(
+            'Role_id',
+            'role_id',
+            'required',
+            [
+                'required' => '%s Harus Diisi!!!'
+            ]
+            );
 
+        if($this->form_validation->run() == FALSE) {
+            $data['title'] = 'Add User -  E-raport';
+            $data['get_user'] = $this->Usermodel->get_user();
+            $this->load->view('layout/header', $data);
+            $this->load->view('layout/sidebar', $data);
+			$this->load->view('content/user/tambah', $data);
+			$this->load->view('layout/footer', $data);
+        } else {
+            $this->usermodel-tambah();
+            $this->session->set_flashdata('message', 'Data Berhasil Ditambahkan');
+            redirect('User/index');
+        }
     }
     public function ubah()
     {
