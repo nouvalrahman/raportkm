@@ -29,20 +29,21 @@
         </div>
 
         <div class="card-body">
-            <form action="<?= base_url('User/tambah')?>" method="post">
+            <form action="<?= base_url('User/tambah');?>" method="POST">
 
+            
             <div class="row g-2">
                 <div class="col mt-5 mb-3">
                     <label for="type" class="form-label">Kode Guru</label>
-                    <input type="text" id="kode_guru" name="kode_guru" placeholder="Enter Kode Guru" class="form-control"  />
-                    <?= form_error('kode_guru', '<small class="text-danger">','</small>')?>
+                    <input type="text" id="username" name="username" placeholder="Enter Kode Guru" class="form-control"  />
+                    <?= form_error('username', '<small class="text-danger">','</small>')?>
                 </div>
             </div>
             <div class="row g-2">
                 <div class="col mb-3">
                     <label for="nama" class="form-label">Nama</label>
-                    <input type="text" id="nama_guru" name="nama_guru" placeholder="Enter Nama" class="form-control"  />
-                    <?= form_error('nama_guru', '<small class="text-danger">','</small>')?>
+                    <input type="text" id="nama" name="nama" placeholder="Enter Nama" class="form-control"  />
+                    <?= form_error('nama', '<small class="text-danger">','</small>')?>
                 </div>
             </div>
             <div class="row g-2">
@@ -54,9 +55,9 @@
             </div>
             <div class="row g-2">
                 <div class="col mb-3">
-                    <label for="passwordconfirm" class="form-label">Confirmation Password</label>
+                    <label for="passwordconfirm" class="form-label">Repeat Password</label>
                     <input type="text" id="passwordconfirm" name="passwordconfirm" placeholder="Enter Password Confirmation" class="form-control"  />
-                    <?= form_error('password', '<small class="text-danger">','</small>')?>
+                    <?= form_error('passwordconfirm', '<small class="text-danger">','</small>')?>
                 </div>
             </div>
             <div class="row g-2">
@@ -73,6 +74,7 @@
                 <a href="<?= base_url('User/index')?>" class="btn btn-secondary mt-2">Cancel</a>
                 <button type="submit" class="btn btn-primary mt-2">Tambah</button>
             </div>
+            
         </form>
         </div>
     </div>

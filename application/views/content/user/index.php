@@ -7,7 +7,7 @@
             <div class="card-header">
                 <div class="row">
                     <div class="col">
-                        <h5>USer</h5>
+                        <h5>User</h5>
                     </div>
                     <div class="col">
                         <div class="float-end">

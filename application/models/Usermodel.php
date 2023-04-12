@@ -24,7 +24,7 @@ class Usermodel extends CI_Model
             'password' => password_hash($this->input->post('password'), PASSWORD_DEFAULT),
             'nama' => htmlspecialchars($this->input->post('nama')),
             'is_active' => 1,
-            'role_id' =>htmlspecialchars($this->input->post('role_id')),
+            'role_id' => 2,
         ];
 
         $this->db->insert('user', $data);
