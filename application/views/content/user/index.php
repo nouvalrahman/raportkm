@@ -1,18 +1,17 @@
 <div class="content-wrapper">
     <!-- content -->
     <div class="container-xxl flex-grow-1 container-p-y">
-        <h4 class="fw-bold py-3 mb-4"><span class="text-muted fw-light">Access/</span>User</h4>
+        <h4 class="fw-bold py-3 mb-4"><span class="text-muted fw-light">Master /</span>User</h4>
 
         <div class="card">
             <div class="card-header">
                 <div class="row">
                     <div class="col">
-                        <h5>USer</h5>
+                        <h5>User</h5>
                     </div>
                     <div class="col">
                         <div class="float-end">
-                            <a href="#" class="btn btn-sm btn-primary" data-bs-toggle="modal"
-                                data-bs-target="#tambahmodal">Tambah</a>
+                            <a href="<?= base_url('User/tambah')?>" class="btn btn-sm btn-primary" >Tambah</a>
                         </div>
                     </div>
                 </div>
@@ -120,7 +119,7 @@
                                                 </div>
                                                 <div class="modal-body">
                                                     <p>Apakah Anda Yakin Ingin Menghapus Data <b>
-                                                            <?= $us['userid'] ?> ?
+                                                            <?= $us['username'] ?> ?
                                                         </b> </p>
                                                     <p>Data Yang Dihapus Tidak Dapat dikembalikan.</p>
                                                 </div>

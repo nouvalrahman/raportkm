@@ -34,7 +34,7 @@ class User extends CI_Controller
         $data['role'] = $this->Rolemodel->get_role();
         $data['menu'] = $this->Menumodel->get_menu();
         $data['user_join'] = $this->Usermodel->join_user_role();
-        // var_dump($data['user_join']);
+        // var_dump($data['role']);
         // die;
         $this->load->view('layout/header', $data);
         $this->load->view('content/user/index', $data);
@@ -43,7 +43,69 @@ class User extends CI_Controller
     }
     public function tambah()
     {
+        $this->form_validation->set_rules(
+            'username',
+            'Username',
+            'required',
+            [
+                'required' => '%s Harus Diisi'
+            ]
+        );
+        $this->form_validation->set_rules(
+            'password',
+            'Password',
+            'required|trim|min_length[3]|matches[passwordconfirm]',
+            [
+                'required' => '%s Harus DIisi',
+                'min_length' => 'Password minimum 3 karakter',
+                'matches'   => 'password tidak sama'
+            ]
+        );
+        $this->form_validation->set_rules(
+            'passwordconfirm',
+            'password confirm',
+            'required|trim|min_length[3]|matches[password]',
+            [
+                'required' => '%s Harus Diisi',
+                'matches' => 'password tidak sama',
+                'min_length' => 'password minimum 3 karakter'
+            ]
+        );
+        $this->form_validation->set_rules(
+            'nama',
+            'Nama',
+            'required',
+            [
+                'required' => '%s Harus Diisi'
+            ]
+            );
+        $this->form_validation->set_rules(
+            'role_id',
+            'Role_id',
+            'required',
+            [
+                'required' => '%s Harus Diisi!!!'
+            ]
+            );
 
+        if($this->form_validation->run() == FALSE) {
+            $data['title'] = 'Add User -  E-raport';
+            $data['user'] = $this->Usermodel->get_user();
+            $data['user_join'] = $this->Usermodel->join_user_role();
+            $this->load->view('layout/header', $data);
+            $this->load->view('layout/sidebar', $data);
+			$this->load->view('content/user/tambah', $data);
+			$this->load->view('layout/footer', $data);
+            // var_dump($data);
+            // die;
+        } else {
+            $this->Usermodel->tambah();
+            $this->session->set_flashdata('message', 'Data Berhasil Ditambahkan');
+            redirect('User/index');
+
+        // var_dump($this->Usermodel-tambah());
+        // die;
+        }
     }
     public function ubah()
     {

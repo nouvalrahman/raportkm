@@ -43,7 +43,7 @@
             <ul class="sub-menu">
                 <li><a class="link_name" href="#">Posts</a></li>
                 <li><a href="#">Identitas Sekolah</a></li>
-                <li><a href="#">Users</a></li>
+                <li><a href="<?= base_url('User/index')?>">Users</a></li>
                 <li><a href="#">Kelas</a></li>
                 <li><a href="#">Siswa</a></li>
                 <li><a href="#">Mata pelajaran</a></li>
