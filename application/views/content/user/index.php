@@ -77,22 +77,43 @@
                                                 <div class="modal-body">
                                                     <div class="row">
                                                         <div class="col">
+                                                            <label for="type" class="form-label">Kode Guru</label>
+                                                            <input type="hidden" id="id" name="id" class="form-control"
+                                                                placeholder="Masukkan ID" value="<?= $us['userid'] ?>" />
+                                                            <input type="text" id="username" name="username" class="form-control"
+                                                                placeholder="Masukkan nama" value="<?= $us['username'] ?>" />
+                                                            <?= form_error('username', '<small class="text-danger">', '</small>') ?>
+                                                        </div>
+                                                    </div>
+                                                    <div class="row">
+                                                        <div class="col">
                                                             <label for="type" class="form-label">Nama</label>
                                                             <input type="hidden" id="id" name="id" class="form-control"
                                                                 placeholder="Masukkan ID" value="<?= $us['userid'] ?>" />
-                                                            <input type="text" id="menu" name="menu" class="form-control"
-                                                                placeholder="Masukkan Menu" value="<?= $us['nama'] ?>" />
-                                                            <?= form_error('menu', '<small class="text-danger">', '</small>') ?>
+                                                            <input type="text" id=nama" name="nama" class="form-control"
+                                                                placeholder="Masukkan nama" value="<?= $us['nama'] ?>" />
+                                                            <?= form_error('nama', '<small class="text-danger">', '</small>') ?>
                                                         </div>
                                                     </div>
                                                     <div class="row">
                                                         <div class="col">
                                                             <label for="type" class="form-label">Password</label>
-                                                            <input type="text" id="icon" name="icon" class="form-control"
-                                                                placeholder="Masukkan Icon" value="<?= $us['password'] ?>" />
-                                                            <small class="text-muted">Password harus terdiri dari 8 huruf
+                                                            <input type="text" id="password" name="password" class="form-control"
+                                                                placeholder="Masukkan password" value="<?= $us['password'] ?>" />
+                                                            <small class="text-muted">Password harus terdiri dari 3 huruf
                                                                 </small>
-                                                            <?= form_error('icon', '<small class="text-danger">', '</small>') ?>
+                                                            <?= form_error('password', '<small class="text-danger">', '</small>') ?>
+                                                        </div>
+                                                    </div>
+                                                    
+                                                    <div class="row">
+                                                        <div class="col">
+                                                            <label for="type" class="form-label">Role</label>
+                                                            <select name="role_id" id="role_id" class="form-control select2">
+                                                                <option value="1">Administrator</option>
+                                                                <option value="2">Guru</option>
+                                                            </select>
+                                                            <?= form_error('role_id', '<small class="text-danger">', '</small>') ?>
                                                         </div>
                                                     </div>
                                                 </div>
@@ -119,7 +140,7 @@
                                                 </div>
                                                 <div class="modal-body">
                                                     <p>Apakah Anda Yakin Ingin Menghapus Data <b>
-                                                            <?= $us['username'] ?> ?
+                                                            <?= $us['nama'] ?> ?
                                                         </b> </p>
                                                     <p>Data Yang Dihapus Tidak Dapat dikembalikan.</p>
                                                 </div>
@@ -141,45 +162,7 @@
                 </div>
             </div>
 
-            <!-- modal tambah -->
-            <div class="modal fade" id="tambahmodal" tabindex="-1" aria-hidden="true">
-                <div class="modal-dialog" role="document">
-                    <form action="<?= base_url('User/tambah') ?>" method="post">
-                        <div class="modal-content">
-                            <div class="modal-header">
-                                <h5 class="modal-title" id="exampleModalLabel1">Tambah User</h5>
-                                <!-- <button type="button" class="btn-close" data-bs-dismiss="modal"
-                                    aria-label="Close"></button> -->
-                            </div>
-                            <div class="modal-body">
-                                <div class="row">
-                                    <div class="col mb-3">
-                                        <label for="type" class="form-label">User</label>
-                                        <input type="text" id="menu" name="menu" class="form-control"
-                                            placeholder="Enter User" />
-                                        <?= form_error('', '<small class="text-danger">', '</small>') ?>
-                                    </div>
-                                </div>
-                                <div div class="row">
-                                    <div class="col mb-3">
-                                        <label for="type" class="form-label">Password</label>
-                                        <input type="text" id="icon" name="icon" class="form-control"
-                                            placeholder="Enter Icon" />
-                                        <small class="text-muted">Password harus terdiri darri 8 huruf</small>
-                                        <?= form_error('password', '<small class="text-danger">', '</small>') ?>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="modal-footer">
-                                <button type="button" class="btn btn-outline-secondary" data-bs-dismiss="modal">
-                                    Close
-                                </button>
-                                <button type="submit" class="btn btn-primary">Tambah</button>
-                            </div>
-                        </div>
-                    </form>
-                </div>
-            </div>
+            
         </div>
     </div>
 </div>

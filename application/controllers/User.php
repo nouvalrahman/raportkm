@@ -109,11 +109,58 @@ class User extends CI_Controller
     }
     public function ubah()
     {
-
+        $this->form_validation->set_rules(
+            'username',
+            'Username',
+            'required',
+            [
+                'required' => '%s Harus Diisi'
+            ]
+        );
+        
+        $this->form_validation->set_rules(
+                'nama',
+                'Nama',
+                'required',
+                [
+                    'required' => '%s Harus Diisi'
+                ]
+            );
+        $this->form_validation->set_rules(
+                'role_id',
+                'Role_id',
+                'required',
+                [
+                    'required' => '%s Harus Diisi!!!'
+                ]
+            );
+        
+            if($this->form_validation->run() == FALSE) {
+                $this->session->set_flashdata('message_error', 'Terdapat Data yang kosong, Silahkan Lengkapi data ');
+                redirect('User/index');
+            } else {
+                $this->Usermodel->ubah();
+                $this->session->set_flashdata('message', 'data berhasil Di ubah');
+                redirect('User/index');
+            }
     }
 
     public function hapus()
     {
-
+        $this->form_validation->set_rules(
+            'id',
+            'Id',
+            'required',
+            [
+                'required' => '%s Harus diisi'
+            ]
+            );
+        if($this->form_validation->run() == FALSE){
+            $this->session->set_flashdata('message_error', 'Terdapat data yang kosong');
+            redirect('User/index');
+        } else {
+            $this->session->set_flashdata('message', 'Data berhasil Di hapus');
+            redirect('User/index');
+        }
     }
 }

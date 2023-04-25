@@ -37,7 +37,7 @@ class Usermodel extends CI_Model
         $nama = htmlspecialchars($this->input->post('nama')); 
         $role = htmlspecialchars($this->input->post('role_id'));
         
-        $this->db->set('username', $username);
+        // $this->db->set('username', $username);
         $this->db->set('nama', $nama);
         $this->db->set('role_id', $role);
         $this->db->where('id', $id);
