@@ -36,7 +36,7 @@
                             <tr>
                                 <th>No.</th>
                                 <th>Kelas</th>
-                                <th>Icon</th>
+                                <th>jurusan</th>
                                 <th>Action</th>
                             </tr>
                         </thead>
@@ -44,61 +44,64 @@
                             <?php
                             $no = 1;
                             ?>
-                            <?php foreach ($menu as $m): ?>
+                            <?php foreach ($kelasjoin as $kj): ?>
                                 <tr>
                                     <td>
                                         <?= $no++ ?>
                                     </td>
                                     <td>
-                                        <?= $m['menu'] ?>
+                                        <?= $kj['kelas'] ?>
                                     </td>
                                     <td>
 
-                                        <!-- <i class="<?= $m['icon'] ?>"></i> -->
-                                        <i class="<?= $m['icon'] ?>"></i>
+                                        <!-- <i class="<?= $kj['jurusan'] ?>"></i> -->
+                                        <i class="<?= $kj['jurusaan'] ?>"></i>
                                         <!-- <i class='bx bxl-xing'></i> -->
 
 
                                     </td>
                                     <td>
                                         <a href="#" class="btn btn-sm btn-warning" data-bs-toggle="modal"
-                                            data-bs-target="#ubahmodal<?= $m['id'] ?>">Ubah</a>
+                                            data-bs-target="#ubahmodal<?= $kj['id'] ?>">Ubah</a>
                                         <a href="#" class="btn btn-sm btn-danger" data-bs-toggle="modal"
-                                            data-bs-target="#hapusmodal<?= $m['id'] ?>">Hapus</a>
+                                            data-bs-target="#hapusmodal<?= $kj['id'] ?>">Hapus</a>
                                     </td>
                                 </tr>
                                 <!-- Modal Ubah -->
-                                <div class="modal fade" id="ubahmodal<?= $m['id'] ?>" tabindex="-1" aria-hidden="true">
+                                <div class="modal fade" id="ubahmodal<?= $kj['id'] ?>" tabindex="-1" aria-hidden="true">
                                     <div class="modal-dialog" role="document">
-                                        <form action="<?= base_url('Menu/ubah') ?>" method="post">
+                                        <form action="<?= base_url('Kelas/ubah') ?>" method="post">
                                             <div class="modal-content">
                                                 <div class="modal-header">
-                                                    <h5 class="modal-title" id="exampleModalLabel1">Ubah Menu</h5>
+                                                    <h5 class="modal-title" id="exampleModalLabel1">Ubah Kelas</h5>
                                                     <!-- <button type="button" class="btn-close" data-bd-dismiss="modal"
                                                         aria-label="Close"></button> -->
                                                 </div>
                                                 <div class="modal-body">
                                                     <div class="row">
                                                         <div class="col">
-                                                            <label for="type" class="form-label">Menu</label>
+                                                            <label for="type" class="form-label">Kelas</label>
                                                             <input type="hidden" id="id" name="id" class="form-control"
-                                                                placeholder="Masukkan ID" value="<?= $m['id'] ?>" />
-                                                            <input type="text" id="menu" name="menu" class="form-control"
-                                                                placeholder="Masukkan Menu" value="<?= $m['menu'] ?>" />
-                                                            <?= form_error('menu', '<small class="text-danger">', '</small>') ?>
+                                                                placeholder="Masukkan ID" value="<?= $kj['id'] ?>" />
+                                                            <input type="text" id="Kelas" name="Kelas" class="form-control"
+                                                                placeholder="Masukkan Kelas" value="<?= $kj['Kelas'] ?>" />
+                                                            <?= form_error('Kelas', '<small class="text-danger">', '</small>') ?>
                                                         </div>
                                                     </div>
                                                     <div class="row">
-                                                        <div class="col">
-                                                            <label for="type" class="form-label">icon</label>
-                                                            <input type="text" id="icon" name="icon" class="form-control"
-                                                                placeholder="Masukkan Icon" value="<?= $m['icon'] ?>" />
-                                                            <small class="text-muted">Ex. menu-icon tf-icon bx
-                                                                bx-cube-alt</small>
-                                                            <?= form_error('icon', '<small class="text-danger">', '</small>') ?>
+                                                        <div class="col mb-3">
+                                                            <label for="type" class="form-label">Jurusan</label>
+                                                            <select name="jurusanid" id="jurusanid" class="form-select">
+                                                                <?php foreach ($jurusan as $j) : ?>
+                                                                    <option value="<?= $j['id'] ?>" <?php if ($j['id'] == $kj['jurusanid']) {
+                                                                                                        echo "selected";
+                                                                                                    }  ?>><?= $j['jurusan'] ?></option>
+                                                                <?php endforeach ?>
+                                                            </select>
+                                                            <?= form_error('jurusanid', '<small class="text-danger">', '</small>') ?>
                                                         </div>
                                                     </div>
-                                                </div>
+
                                                 <div class="modal-footer">
                                                     <button type="button" class="btn btn-outline-secondary"
                                                         data-bs-toggle="modal">Close</button>
@@ -111,24 +114,24 @@
                                 <!-- End modal ubah -->
 
                                 <!-- modal hapus -->
-                                <div class="modal fade" id="hapusmodal<?= $m['id'] ?>" tabindex="-1" aria-hidden="true">
+                                <div class="modal fade" id="hapusmodal<?= $kj['id'] ?>" tabindex="-1" aria-hidden="true">
                                     <div class="modal-dialog" role="document">
-                                        <form action="<?= base_url('content/menu/hapus') ?>" method="post">
+                                        <form action="<?= base_url('content/Kelas/hapus') ?>" method="post">
                                             <div class="modal-content">
                                                 <div class="modal-header">
-                                                    <h5 class="modal-title" id="exampleModalLabel1">Hapus Menu</h5>
+                                                    <h5 class="modal-title" id="exampleModalLabel1">Hapus Kelas</h5>
                                                     <!-- <button type="button" class="btn-close" data-bs-dismiss="modal"
                                                         data-bs-target="Close"></button> -->
                                                 </div>
                                                 <div class="modal-body">
                                                     <p>Apakah Anda Yakin Ingin Menghapus Data <b>
-                                                            <?= $m['menu'] ?> ?
+                                                            <?= $kj['Kelas'] ?> ?
                                                         </b> </p>
                                                     <p>Data Yang Dihapus Tidak Dapat dikembalikan.</p>
                                                 </div>
                                                 <div class="modal-footer">
                                                     <input type="hidden" id="id" name="id" class="form-control"
-                                                        placeholder="Enter ID" vlaue="<?= $m['id'] ?>" />
+                                                        placeholder="Enter ID" vlaue="<?= $kj['id'] ?>" />
                                                     <button type="button" class="btn btn-outline-secondary"
                                                         data-bs-dismiss="modal"> Close</button>
                                                     <button type="submit" class="btn btn-danger">Hapus</button>
@@ -147,32 +150,36 @@
             <!-- modal tambah -->
             <div class="modal fade" id="tambahmodal" tabindex="-1" aria-hidden="true">
                 <div class="modal-dialog" role="document">
-                    <form action="<?= base_url('Menu/tambah') ?>" method="post">
+                    <form action="<?= base_url('Kelas/tambah') ?>" method="post">
                         <div class="modal-content">
                             <div class="modal-header">
-                                <h5 class="modal-title" id="exampleModalLabel1">Tambah Menu</h5>
+                                <h5 class="modal-title" id="exampleModalLabel1">Tambah Kelas</h5>
                                 <!-- <button type="button" class="btn-close" data-bs-dismiss="modal"
                                     aria-label="Close"></button> -->
                             </div>
                             <div class="modal-body">
                                 <div class="row">
                                     <div class="col mb-3">
-                                        <label for="type" class="form-label">Menu</label>
-                                        <input type="text" id="menu" name="menu" class="form-control"
-                                            placeholder="Enter Menu" />
-                                        <?= form_error('menu', '<small class="text-danger">', '</small>') ?>
+                                        <label for="type" class="form-label">Kelas</label>
+                                        <input type="text" id="Kelas" name="Kelas" class="form-control"
+                                            placeholder="Enter Kelas" />
+                                        <?= form_error('Kelas', '<small class="text-danger">', '</small>') ?>
                                     </div>
                                 </div>
-                                <div div class="row">
+                                <div class="row">
                                     <div class="col mb-3">
-                                        <label for="type" class="form-label">Icon</label>
-                                        <input type="text" id="icon" name="icon" class="form-control"
-                                            placeholder="Enter Icon" />
-                                        <small class="text-muted">Ex. menu-icon tf-icons bx bx-cube-alt</small>
-                                        <?= form_error('icon', '<small class="text-danger">', '</small>') ?>
+                                        <label for="type" class="form-label">Jurusan</label>
+                                        <select name="jurusanid" id="jurusanid" class="form-select">
+                                            <?php foreach ($jurusanid as $j) : ?>
+                                                <option value="<?= $j['id'] ?>" 
+                                                <?php if ($j['id'] == $kelasjoin['jurusanid']) {
+                                                echo "selected";}  ?>><?= $j['jurusan'] ?></option>
+                                            <?php endforeach ?>
+                                        </select>
+                                        <?= form_error('jurusanid', '<small class="text-danger">', '</small>') ?>
                                     </div>
                                 </div>
-                            </div>
+
                             <div class="modal-footer">
                                 <button type="button" class="btn btn-outline-secondary" data-bs-dismiss="modal">
                                     Close
