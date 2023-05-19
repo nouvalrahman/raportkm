@@ -22,7 +22,7 @@ class Kelas extends CI_Controller
         $this->load->view('content/kelas/index', $data);
         $this->load->view('layout/sidebar', $data);
         $this->load->view('layout/footer', $data);
-        // var_dump($data);
+        // var_dump($data['kelasjoin']);
         // die;
     }
     public function tambah()
@@ -47,9 +47,9 @@ class Kelas extends CI_Controller
             ]
         );
 
-        if($this->form_validation->run() == FALSE ){
+        if ($this->form_validation->run() == FALSE) {
             $this->session->set_flashdata('message_error', 'Terdapat Data yang kosong, Silahkan Lengkapi data ');
-            redirect('Kelas/tambah');
+            redirect('Kelas/index');
         } else {
             $this->Kelasmodel->tambah();
             $this->session->set_flashdata('message', 'Data Berhasil Ditambahkan');
@@ -92,7 +92,7 @@ class Kelas extends CI_Controller
 
         if ($this->form_validation->run() == FALSE) {
             $this->session->set_flashdata('message_error', 'Terdapat Data yang kosong, Silahkan Lengkapi data ');
-            redirect('Kelas/ubah');
+            redirect('Kelas/index');
         } else {
             $this->Kelasmodel->ubah();
             $this->session->set_flashdata('message', 'Data Berhasil Diubah');
@@ -113,7 +113,7 @@ class Kelas extends CI_Controller
 
         if ($this->form_validation->run() == FALSE) {
             $this->session->set_flashdata('message_error', 'Terdapat Data yang kosong, Silahkan Lengkapi data ');
-            redirect('Kelas/hapus');
+            redirect('Kelas/index');
         } else {
             $this->Kelasmodel->hapus();
             $this->session->set_flashdata('message', 'Data Berhasil Dihapus');

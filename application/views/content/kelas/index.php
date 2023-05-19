@@ -53,22 +53,18 @@
                                         <?= $kj['kelas'] ?>
                                     </td>
                                     <td>
-
-                                        <!-- <i class="<?= $kj['jurusan'] ?>"></i> -->
-                                        <i class="<?= $kj['jurusaan'] ?>"></i>
-                                        <!-- <i class='bx bxl-xing'></i> -->
-
-
+                                        <?= $kj['jurusan'] ?>
                                     </td>
                                     <td>
                                         <a href="#" class="btn btn-sm btn-warning" data-bs-toggle="modal"
-                                            data-bs-target="#ubahmodal<?= $kj['id'] ?>">Ubah</a>
+                                            data-bs-target="#ubahmodal<?= $kj['kelasid'] ?>">Ubah</a>
                                         <a href="#" class="btn btn-sm btn-danger" data-bs-toggle="modal"
-                                            data-bs-target="#hapusmodal<?= $kj['id'] ?>">Hapus</a>
+                                            data-bs-target="#hapusmodal<?= $kj['kelasid'] ?>">Hapus</a>
                                     </td>
                                 </tr>
                                 <!-- Modal Ubah -->
-                                <div class="modal fade" id="ubahmodal<?= $kj['id'] ?>" tabindex="-1" aria-hidden="true">
+                                <div class="modal fade" id="ubahmodal<?= $kj['kelasid'] ?>" tabindex="-1"
+                                    aria-hidden="true">
                                     <div class="modal-dialog" role="document">
                                         <form action="<?= base_url('Kelas/ubah') ?>" method="post">
                                             <div class="modal-content">
@@ -81,10 +77,12 @@
                                                     <div class="row">
                                                         <div class="col">
                                                             <label for="type" class="form-label">Kelas</label>
-                                                            <input type="hidden" id="id" name="id" class="form-control"
-                                                                placeholder="Masukkan ID" value="<?= $kj['id'] ?>" />
-                                                            <input type="text" id="Kelas" name="Kelas" class="form-control"
-                                                                placeholder="Masukkan Kelas" value="<?= $kj['Kelas'] ?>" />
+                                                            <input type="hidden" id="kelasid" name="kelasid"
+                                                                class="form-control" placeholder="Masukkan ID"
+                                                                value="<?= $kj['kelas'] ?>" />
+                                                            <input type="text" id="kelasid" name="kelasid"
+                                                                class="form-control" placeholder="Masukkan kelas"
+                                                                value="<?= $kj['kelas'] ?>" />
                                                             <?= form_error('Kelas', '<small class="text-danger">', '</small>') ?>
                                                         </div>
                                                     </div>
@@ -92,29 +90,33 @@
                                                         <div class="col mb-3">
                                                             <label for="type" class="form-label">Jurusan</label>
                                                             <select name="jurusanid" id="jurusanid" class="form-select">
-                                                                <?php foreach ($jurusan as $j) : ?>
+                                                                <?php foreach ($jurusanid as $j): ?>
                                                                     <option value="<?= $j['id'] ?>" <?php if ($j['id'] == $kj['jurusanid']) {
-                                                                                                        echo "selected";
-                                                                                                    }  ?>><?= $j['jurusan'] ?></option>
+                                                                          echo "selected";
+                                                                      } ?>><?= $j['jurusan'] ?></option>
                                                                 <?php endforeach ?>
                                                             </select>
                                                             <?= form_error('jurusanid', '<small class="text-danger">', '</small>') ?>
                                                         </div>
                                                     </div>
 
-                                                <div class="modal-footer">
-                                                    <button type="button" class="btn btn-outline-secondary"
-                                                        data-bs-toggle="modal">Close</button>
-                                                    <button type="submit" class="btn btn-warning">Ubah</button>
+                                                    <div class="modal-footer">
+                                                        <input type="hidden" id="kelasid" name="kelasid"
+                                                            class="form-control" value="<?= $kj['kelas'] ?>"
+                                                            placeholder="Enter ID" />
+                                                        <button type="button" class="btn btn-outline-secondary"
+                                                            data-bs-toggle="modal">Close</button>
+                                                        <button type="submit" class="btn btn-warning">Ubah</button>
+                                                    </div>
                                                 </div>
-                                            </div>
                                         </form>
                                     </div>
                                 </div>
                                 <!-- End modal ubah -->
 
                                 <!-- modal hapus -->
-                                <div class="modal fade" id="hapusmodal<?= $kj['id'] ?>" tabindex="-1" aria-hidden="true">
+                                <div class="modal fade" id="hapusmodal<?= $kj['kelasid'] ?>" tabindex="-1"
+                                    aria-hidden="true">
                                     <div class="modal-dialog" role="document">
                                         <form action="<?= base_url('content/Kelas/hapus') ?>" method="post">
                                             <div class="modal-content">
@@ -130,8 +132,8 @@
                                                     <p>Data Yang Dihapus Tidak Dapat dikembalikan.</p>
                                                 </div>
                                                 <div class="modal-footer">
-                                                    <input type="hidden" id="id" name="id" class="form-control"
-                                                        placeholder="Enter ID" vlaue="<?= $kj['id'] ?>" />
+                                                    <input type="hidden" id="kelasid" name="kelasid" class="form-control"
+                                                        placeholder="Enter ID" vlaue="<?= $kj['kelas    '] ?>" />
                                                     <button type="button" class="btn btn-outline-secondary"
                                                         data-bs-dismiss="modal"> Close</button>
                                                     <button type="submit" class="btn btn-danger">Hapus</button>
@@ -170,23 +172,21 @@
                                     <div class="col mb-3">
                                         <label for="type" class="form-label">Jurusan</label>
                                         <select name="jurusanid" id="jurusanid" class="form-select">
-                                            <?php foreach ($jurusanid as $j) : ?>
-                                                <option value="<?= $j['id'] ?>" 
-                                                <?php if ($j['id'] == $kelasjoin['jurusanid']) {
-                                                echo "selected";}  ?>><?= $j['jurusan'] ?></option>
+                                            <?php foreach ($jurusanid as $j): ?>
+                                                <option value="<?= $j['jurusan'] ?>" ?><?= $j['jurusan'] ?></option>
                                             <?php endforeach ?>
                                         </select>
                                         <?= form_error('jurusanid', '<small class="text-danger">', '</small>') ?>
                                     </div>
                                 </div>
 
-                            <div class="modal-footer">
-                                <button type="button" class="btn btn-outline-secondary" data-bs-dismiss="modal">
-                                    Close
-                                </button>
-                                <button type="submit" class="btn btn-primary">Tambah</button>
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-outline-secondary" data-bs-dismiss="modal">
+                                        Close
+                                    </button>
+                                    <button type="submit" class="btn btn-primary">Tambah</button>
+                                </div>
                             </div>
-                        </div>
                     </form>
                 </div>
             </div>

@@ -8,11 +8,13 @@ class Kelasmodel extends CI_Model
 
     public function join_kelas_jurusan()
     {
-        $this->db->select('kelas.id AS kelasid, kelas.kelas, kelas.jurusanid, kelas.is_active AS kelasactive, jurusan.id AS jurusanid, jurusan.jurusan, jurusan.is_active AS jurusanactive');
+        // $this->db->select('kelas.id AS kelasid, kelas.kelas, kelas.jurusanid, kelas.is_active AS kelasactive, jurusan.id AS jurusanid, jurusan.jurusan, jurusan.is_active AS jurusanactive');
+        $this->db->select('jurusan.id AS jurusanid, jurusan.jurusan, jurusan.is_active AS jurusanactive, kelas.id AS kelasid, kelas.kelas, kelas.is_active AS kelasactive, kelas.jurusanid');
+        // $this->db->select('*');
         $this->db->from('jurusan');
         $this->db->join('kelas', 'jurusan.id = kelas.jurusanid');
-        $this->db->where('jurusan.is_active', 1);
-        $this->db->order_by('jurusan', 'ASC');
+        $this->db->where('kelas.is_active', 1);
+        $this->db->order_by('kelas', 'ASC');
         $result = $this->db->get();
         return $result->result_array();
     }
@@ -41,7 +43,7 @@ class Kelasmodel extends CI_Model
         $this->db->update('kelas');
     }
 
-    
+
 
 
 }
