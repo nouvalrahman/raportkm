@@ -77,13 +77,9 @@
                                                     <div class="row">
                                                         <div class="col">
                                                             <label for="type" class="form-label">Kelas</label>
-                                                            <input type="hidden" id="kelasid" name="kelasid"
-                                                                class="form-control" placeholder="Masukkan ID"
-                                                                value="<?= $kj['kelas'] ?>" />
-                                                            <input type="text" id="kelasid" name="kelasid"
-                                                                class="form-control" placeholder="Masukkan kelas"
-                                                                value="<?= $kj['kelas'] ?>" />
-                                                            <?= form_error('Kelas', '<small class="text-danger">', '</small>') ?>
+                                                            <input type="text" id="kelas" name="kelas" class="form-control"
+                                                                placeholder="Masukkan kelas" value="<?= $kj['kelas'] ?>" />
+                                                            <?= form_error('kelas', '<small class="text-danger">', '</small>') ?>
                                                         </div>
                                                     </div>
                                                     <div class="row">
@@ -101,9 +97,8 @@
                                                     </div>
 
                                                     <div class="modal-footer">
-                                                        <input type="hidden" id="kelasid" name="kelasid"
-                                                            class="form-control" value="<?= $kj['kelas'] ?>"
-                                                            placeholder="Enter ID" />
+                                                        <input type="hidden" id="id" name="id" class="form-control"
+                                                            value="<?= $kj['kelasid'] ?>" placeholder="Enter ID" />
                                                         <button type="button" class="btn btn-outline-secondary"
                                                             data-bs-toggle="modal">Close</button>
                                                         <button type="submit" class="btn btn-warning">Ubah</button>
@@ -118,7 +113,7 @@
                                 <div class="modal fade" id="hapusmodal<?= $kj['kelasid'] ?>" tabindex="-1"
                                     aria-hidden="true">
                                     <div class="modal-dialog" role="document">
-                                        <form action="<?= base_url('content/Kelas/hapus') ?>" method="post">
+                                        <form action="<?= base_url('Kelas/hapus') ?>" method="post">
                                             <div class="modal-content">
                                                 <div class="modal-header">
                                                     <h5 class="modal-title" id="exampleModalLabel1">Hapus Kelas</h5>
@@ -132,8 +127,8 @@
                                                     <p>Data Yang Dihapus Tidak Dapat dikembalikan.</p>
                                                 </div>
                                                 <div class="modal-footer">
-                                                    <input type="hidden" id="kelasid" name="kelasid" class="form-control"
-                                                        placeholder="Enter ID" vlaue="<?= $kj['kelas    '] ?>" />
+                                                    <input type="hidden" id="id" name="id" class="form-control"
+                                                        placeholder="Enter ID" vlaue="<?= $kj['kelasid'] ?>" />
                                                     <button type="button" class="btn btn-outline-secondary"
                                                         data-bs-dismiss="modal"> Close</button>
                                                     <button type="submit" class="btn btn-danger">Hapus</button>
@@ -163,9 +158,9 @@
                                 <div class="row">
                                     <div class="col mb-3">
                                         <label for="type" class="form-label">Kelas</label>
-                                        <input type="text" id="Kelas" name="Kelas" class="form-control"
+                                        <input type="text" id="kelas" name="kelas" class="form-control"
                                             placeholder="Enter Kelas" />
-                                        <?= form_error('Kelas', '<small class="text-danger">', '</small>') ?>
+                                        <?= form_error('kelas', '<small class="text-danger">', '</small>') ?>
                                     </div>
                                 </div>
                                 <div class="row">
@@ -173,7 +168,7 @@
                                         <label for="type" class="form-label">Jurusan</label>
                                         <select name="jurusanid" id="jurusanid" class="form-select">
                                             <?php foreach ($jurusanid as $j): ?>
-                                                <option value="<?= $j['jurusan'] ?>" ?><?= $j['jurusan'] ?></option>
+                                                <option value="<?= $j['id'] ?>" ?><?= $j['jurusan'] ?></option>
                                             <?php endforeach ?>
                                         </select>
                                         <?= form_error('jurusanid', '<small class="text-danger">', '</small>') ?>
