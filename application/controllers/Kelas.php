@@ -49,7 +49,7 @@ class Kelas extends CI_Controller
 
         if ($this->form_validation->run() == FALSE) {
             $this->session->set_flashdata('message_error', 'Terdapat Data yang kosong, Silahkan Lengkapi data ');
-            redirect('Kelas/index');
+            redirect('Kelas/tambah');
         } else {
             $this->Kelasmodel->tambah();
             $this->session->set_flashdata('message', 'Data Berhasil Ditambahkan');
@@ -92,7 +92,7 @@ class Kelas extends CI_Controller
 
         if ($this->form_validation->run() == FALSE) {
             $this->session->set_flashdata('message_error', 'Terdapat Data yang kosong, Silahkan Lengkapi data ');
-            redirect('Kelas/index');
+            redirect('Kelas/ubah');
         } else {
             $this->Kelasmodel->ubah();
             $this->session->set_flashdata('message', 'Data Berhasil Diubah');
@@ -104,7 +104,7 @@ class Kelas extends CI_Controller
     {
         $this->form_validation->set_rules(
             'id',
-            'id',
+            'Id',
             'required',
             [
                 'required' => '%s Harus Diisi'
@@ -113,9 +113,9 @@ class Kelas extends CI_Controller
 
         if ($this->form_validation->run() == FALSE) {
             $this->session->set_flashdata('message_error', 'Maaf Data tidak berhasil terhapus ');
-            redirect('Kelas/index');
+            redirect('Kelas/hapus');
         } else {
-            $this->kelasmodel->hapus();
+            $this->Kelasmodel->hapus();
             $this->session->set_flashdata('message', 'Data Berhasil Dihapus');
             redirect('Kelas/index');
         }

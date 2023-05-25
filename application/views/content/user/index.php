@@ -11,22 +11,22 @@
                     </div>
                     <div class="col">
                         <div class="float-end">
-                            <a href="<?= base_url('User/tambah')?>" class="btn btn-sm btn-primary" >Tambah</a>
+                            <a href="<?= base_url('User/tambah') ?>" class="btn btn-sm btn-primary">Tambah</a>
                         </div>
                     </div>
                 </div>
             </div>
-            <?php if ($this->session->flashdata('message')) : ?>
-            <div class="alert alert-success alert-dismissible" role="alert">
-                <?= $this->session->flashdata('message') ?>
-                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-            </div>
-        <?php elseif ($this->session->flashdata('message_error')) : ?>
-            <div class="alert alert-danger alert-dismissible" role="alert">
-                <?= $this->session->flashdata('message_error') ?>
-                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-            </div>
-        <?php endif ?>
+            <?php if ($this->session->flashdata('message')): ?>
+                <div class="alert alert-success alert-dismissible" role="alert">
+                    <?= $this->session->flashdata('message') ?>
+                    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                </div>
+            <?php elseif ($this->session->flashdata('message_error')): ?>
+                <div class="alert alert-danger alert-dismissible" role="alert">
+                    <?= $this->session->flashdata('message_error') ?>
+                    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                </div>
+            <?php endif ?>
 
             <div class="card-body">
                 <div class="table-responsive text-nowrap py-2 px-2">
@@ -80,8 +80,9 @@
                                                             <label for="type" class="form-label">Kode Guru</label>
                                                             <input type="hidden" id="id" name="id" class="form-control"
                                                                 placeholder="Masukkan ID" value="<?= $us['userid'] ?>" />
-                                                            <input type="text" id="username" name="username" class="form-control"
-                                                                placeholder="Masukkan nama" value="<?= $us['username'] ?>" />
+                                                            <input type="text" id="username" name="username"
+                                                                class="form-control" placeholder="Masukkan nama"
+                                                                value="<?= $us['username'] ?>" />
                                                             <?= form_error('username', '<small class="text-danger">', '</small>') ?>
                                                         </div>
                                                     </div>
@@ -90,7 +91,7 @@
                                                             <label for="type" class="form-label">Nama</label>
                                                             <input type="hidden" id="id" name="id" class="form-control"
                                                                 placeholder="Masukkan ID" value="<?= $us['userid'] ?>" />
-                                                            <input type="text" id=nama" name="nama" class="form-control"
+                                                            <input type="text" id="nama" name="nama" class="form-control"
                                                                 placeholder="Masukkan nama" value="<?= $us['nama'] ?>" />
                                                             <?= form_error('nama', '<small class="text-danger">', '</small>') ?>
                                                         </div>
@@ -98,18 +99,20 @@
                                                     <div class="row">
                                                         <div class="col">
                                                             <label for="type" class="form-label">Password</label>
-                                                            <input type="text" id="password" name="password" class="form-control"
-                                                                placeholder="Masukkan password" value="<?= $us['password'] ?>" />
+                                                            <input type="text" id="password" name="password"
+                                                                class="form-control" placeholder="Masukkan password"
+                                                                value="<?= $us['password'] ?>" />
                                                             <small class="text-muted">Password harus terdiri dari 3 huruf
-                                                                </small>
+                                                            </small>
                                                             <?= form_error('password', '<small class="text-danger">', '</small>') ?>
                                                         </div>
                                                     </div>
-                                                    
+
                                                     <div class="row">
                                                         <div class="col">
                                                             <label for="type" class="form-label">Role</label>
-                                                            <select name="role_id" id="role_id" class="form-control select2">
+                                                            <select name="role_id" id="role_id"
+                                                                class="form-control select2">
                                                                 <option value="1">Administrator</option>
                                                                 <option value="2">Guru</option>
                                                             </select>
@@ -129,7 +132,8 @@
                                 <!-- End modal ubah -->
 
                                 <!-- modal hapus -->
-                                <div class="modal fade" id="hapusmodal<?= $us['userid'] ?>" tabindex="-1" aria-hidden="true">
+                                <div class="modal fade" id="hapusmodal<?= $us['userid'] ?>" tabindex="-1"
+                                    aria-hidden="true">
                                     <div class="modal-dialog" role="document">
                                         <form action="<?= base_url('User/hapus') ?>" method="post">
                                             <div class="modal-content">
@@ -162,7 +166,7 @@
                 </div>
             </div>
 
-            
+
         </div>
     </div>
 </div>

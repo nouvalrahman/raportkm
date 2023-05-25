@@ -58,7 +58,7 @@ class User extends CI_Controller
             [
                 'required' => '%s Harus DIisi',
                 'min_length' => 'Password minimum 3 karakter',
-                'matches'   => 'password tidak sama'
+                'matches' => 'password tidak sama'
             ]
         );
         $this->form_validation->set_rules(
@@ -78,7 +78,7 @@ class User extends CI_Controller
             [
                 'required' => '%s Harus Diisi'
             ]
-            );
+        );
         $this->form_validation->set_rules(
             'role_id',
             'Role_id',
@@ -86,16 +86,16 @@ class User extends CI_Controller
             [
                 'required' => '%s Harus Diisi!!!'
             ]
-            );
+        );
 
-        if($this->form_validation->run() == FALSE) {
+        if ($this->form_validation->run() == FALSE) {
             $data['title'] = 'Add User -  E-raport';
             $data['user'] = $this->Usermodel->get_user();
             $data['user_join'] = $this->Usermodel->join_user_role();
             $this->load->view('layout/header', $data);
             $this->load->view('layout/sidebar', $data);
-			$this->load->view('content/user/tambah', $data);
-			$this->load->view('layout/footer', $data);
+            $this->load->view('content/user/tambah', $data);
+            $this->load->view('layout/footer', $data);
             // var_dump($data);
             // die;
         } else {
@@ -103,8 +103,8 @@ class User extends CI_Controller
             $this->session->set_flashdata('message', 'Data Berhasil Ditambahkan');
             redirect('User/index');
 
-        // var_dump($this->Usermodel-tambah());
-        // die;
+            // var_dump($this->Usermodel-tambah());
+            // die;
         }
     }
     public function ubah()
@@ -117,32 +117,32 @@ class User extends CI_Controller
                 'required' => '%s Harus Diisi'
             ]
         );
-        
+
         $this->form_validation->set_rules(
-                'nama',
-                'Nama',
-                'required',
-                [
-                    'required' => '%s Harus Diisi'
-                ]
-            );
+            'nama',
+            'Nama',
+            'required',
+            [
+                'required' => '%s Harus Diisi'
+            ]
+        );
         $this->form_validation->set_rules(
-                'role_id',
-                'Role_id',
-                'required',
-                [
-                    'required' => '%s Harus Diisi!!!'
-                ]
-            );
-        
-            if($this->form_validation->run() == FALSE) {
-                $this->session->set_flashdata('message_error', 'Terdapat Data yang kosong, Silahkan Lengkapi data ');
-                redirect('User/index');
-            } else {
-                $this->Usermodel->ubah();
-                $this->session->set_flashdata('message', 'data berhasil Di ubah');
-                redirect('User/index');
-            }
+            'role_id',
+            'Role_id',
+            'required',
+            [
+                'required' => '%s Harus Diisi!!!'
+            ]
+        );
+
+        if ($this->form_validation->run() == FALSE) {
+            $this->session->set_flashdata('message_error', 'Terdapat Data yang kosong, Silahkan Lengkapi data ');
+            redirect('User/index');
+        } else {
+            $this->Usermodel->ubah();
+            $this->session->set_flashdata('message', 'data berhasil Di ubah');
+            redirect('User/index');
+        }
     }
 
     public function hapus()
@@ -154,11 +154,12 @@ class User extends CI_Controller
             [
                 'required' => '%s Harus diisi'
             ]
-            );
-        if($this->form_validation->run() == FALSE){
+        );
+        if ($this->form_validation->run() == FALSE) {
             $this->session->set_flashdata('message_error', 'Terdapat data yang kosong');
             redirect('User/index');
         } else {
+            $this->Usermodel->hapus();
             $this->session->set_flashdata('message', 'Data berhasil Di hapus');
             redirect('User/index');
         }

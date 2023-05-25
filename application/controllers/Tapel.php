@@ -1,13 +1,13 @@
 <?php
 defined('BASEPATH') or exit('No direct script access allowed');
 
-class Menu extends CI_Controller
+class Tapel extends CI_Controller
 {
     public function __construct()
     {
         parent::__construct();
         $this->load->library('form_validation');
-        $this->load->model('Menumodel');
+        $this->load->model('Tapelmodel');
         $this->load->library('session');
     }
     /**
@@ -27,28 +27,30 @@ class Menu extends CI_Controller
      */
     public function index()
     {
-        $data['title'] = "Menu - E-Raport";
-        $data['menu'] = $this->Menumodel->get_menu();
+        $data['title'] = "Tahun Pelajaran - E-Raport";
+        $data['tapel'] = $this->Tapelmodel->get_tapel();
+        $data['tapeljoin'] = $this->Tapelmodel->join_tapel_semester();
+        $data['semester'] = $this->Tapelmodel->get_semester();
         $this->load->view('layout/header', $data);
-        $this->load->view('content/menu/index', $data);
+        $this->load->view('content/tapel/index', $data);
         $this->load->view('layout/sidebar', $data);
         $this->load->view('layout/footer', $data);
-        // var_dump($data);
+        // var_dump($data['semester']);
         // die;
     }
     public function tambah()
     {
         $this->form_validation->set_rules(
-            'menu',
-            'Menu',
+            'tahunpelajaran',
+            'Tahunpelajaran',
             'required',
             [
                 'required' => '%s Harus Diisi'
             ]
         );
         $this->form_validation->set_rules(
-            'icon',
-            'Icon',
+            'semesterid',
+            'Semesterid',
             'required',
             [
                 'required' => '%s Harus Diisi'
@@ -57,19 +59,19 @@ class Menu extends CI_Controller
 
         if ($this->form_validation->run() == FALSE) {
             $this->session->set_flashdata('message_error', 'Terdapat Data yang kosong, Silahkan Lengkapi data ');
-            redirect('Menu/tambah');
+            redirect('Tapel/tambah');
         } else {
-            $this->menumodel->tambah();
+            $this->Tapelmodel->tambah();
             $this->session->set_flashdata('message', 'Data Berhasil Ditambahkan');
-            redirect('Menu/tambah');
+            redirect('Tapel/index');
         }
 
     }
     public function ubah()
     {
         $this->form_validation->set_rules(
-            'menu',
-            'Menu',
+            'tahunpelajaran',
+            'Tahunpelajaran',
             'required',
             [
                 'required' => '%s Harus Diisi'
@@ -77,8 +79,8 @@ class Menu extends CI_Controller
 
         );
         $this->form_validation->set_rules(
-            'icon',
-            'Icon',
+            'semesterid',
+            'Semesterid',
             'required',
             [
                 'required' => '%s Harus Diisi'
@@ -87,19 +89,19 @@ class Menu extends CI_Controller
 
         if ($this->form_validation->run() == FALSE) {
             $this->session->set_flashdata('message_error', 'Terdapat Data yang kosong, Silahkan Lengkapi data ');
-            redirect('Menu/index');
+            redirect('Tapel/index');
         } else {
-            $this->menumodel->ubah();
+            $this->Tapelmodel->ubah();
             $this->session->set_flashdata('message', 'Data Berhasil Diubah');
-            redirect('Menu/index');
+            redirect('Tapel/index');
         }
     }
 
     public function hapus()
     {
         $this->form_validation->set_rules(
-            'Id',
             'id',
+            'Id',
             'required',
             [
                 'required' => '%s Harus Diisi'
@@ -107,12 +109,12 @@ class Menu extends CI_Controller
         );
 
         if ($this->form_validation->run() == FALSE) {
-            $this->session->set_flashdata('message_error', 'Maaf, Data tidak terhapus ');
-            redirect('content/menu');
+            $this->session->set_flashdata('message_error', 'maaf data tidak terhapus ');
+            redirect('Tapel/index');
         } else {
-            $this->menumodel->hapus();
+            $this->Tapelmodel->hapus();
             $this->session->set_flashdata('message', 'Data Berhasil Dihapus');
-            redirect('content/menu');
+            redirect('Tapel/index');
         }
     }
 }

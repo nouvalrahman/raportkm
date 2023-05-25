@@ -2,7 +2,7 @@
     <!-- Content -->
 
     <div class="container-xxl flex-grow-1 container-p-y">
-        <h4 class="fw-bold py-3 mb-4"><span class="text-muted fw-light">Access /</span>Kelas</h4>
+        <h4 class="fw-bold py-3 mb-4"><span class="text-muted fw-light">Access /</span>Tahun Pelajaran</h4>
 
 
         <?php if ($this->session->flashdata('message')): ?>
@@ -21,13 +21,13 @@
             <div class="card-header">
                 <div class="row">
                     <div class="col">
-                        <h5>Data Kelas</h5>
+                        <h5>Tahun Pelajaran</h5>
 
                     </div>
                     <div class="col">
                         <div class="float-end">
                             <a href="#" class="btn btn-sm btn-primary" data-bs-toggle="modal"
-                                data-bs-target="#tambahmodal">Tambah</a>
+                                data-bs-target="#tambah_modal">Tambah</a>
                         </div>
                     </div>
                 </div>
@@ -40,8 +40,8 @@
                         <thead>
                             <tr>
                                 <th>No</th>
-                                <th>Kelas</th>
-                                <th>Jurusan</th>
+                                <th>Tahun Pelajaran</th>
+                                <th>semester</th>
                                 <th>Actions</th>
                             </tr>
                         </thead>
@@ -49,65 +49,67 @@
                             <?php
                             $no = 1;
                             ?>
-                            <?php foreach ($kelasjoin as $kj): ?>
+                            <?php foreach ($tapeljoin as $tp): ?>
                                 <tr>
                                     <td>
                                         <?= $no++ ?>
                                     </td>
                                     <td>
-                                        <?= $kj['kelas'] ?>
+                                        <?= $tp['tahunpelajaran'] ?>
                                     </td>
                                     <td>
-                                        <?= $kj['jurusan'] ?>
+                                        <?= $tp['semester'] ?>
                                     </td>
                                     <td>
                                         <a href="#" class="btn btn-sm btn-warning" data-bs-toggle="modal"
-                                            data-bs-target="#ubahmodal<?= $kj['kelasid'] ?>">Edit</a>
+                                            data-bs-target="#ubah_modal<?= $tp['tapelid'] ?>">Edit</a>
                                         <a href="#" class="btn btn-sm btn-danger" data-bs-toggle="modal"
-                                            data-bs-target="#hapusmodal<?= $kj['kelasid'] ?>">Hapus</a>
+                                            data-bs-target="#hapus_modal<?= $tp['tapelid'] ?>">Hapus</a>
                                     </td>
                                 </tr>
 
 
                                 <!-- Modal Ubah -->
-                                <div class="modal fade" id="ubahmodal<?= $kj['kelasid'] ?>" tabindex="-1"
+                                <div class="modal fade" id="ubah_modal<?= $tp['tapelid'] ?>" tabindex="-1"
                                     aria-hidden="true">
                                     <div class="modal-dialog" role="document">
-                                        <form action="<?= base_url('Kelas/ubah') ?>" method="post">
+                                        <form action="<?= base_url('Tapel/ubah') ?>" method="post">
                                             <div class="modal-content">
                                                 <div class="modal-header">
-                                                    <h5 class="modal-title" id="exampleModalLabel1">Ubah Kelas</h5>
+                                                    <h5 class="modal-title" id="exatpleModalLabel1">Ubah Tapel</h5>
                                                     <button type="button" class="btn-close" data-bs-dismiss="modal"
                                                         aria-label="Close"></button>
                                                 </div>
                                                 <div class="modal-body">
                                                     <div class="row">
                                                         <div class="col mb-3">
-                                                            <label for="type" class="form-label">Kelas</label>
-                                                            <input type="text" id="kelas" name="kelas" class="form-control"
-                                                                value="<?= $kj['kelas'] ?>" placeholder="Enter title" />
+                                                            <label for="type" class="form-label">Judul Tapel</label>
+                                                            <input type="text" id="tahunpelajaran" name="tahunpelajaran"
+                                                                class="form-control" value="<?= $tp['tahunpelajaran'] ?>"
+                                                                placeholder="Enter Tapel" />
                                                             <!-- <small class="text-muted">Ex. Guru, Tenaga Kependidikan</small> -->
-                                                            <?= form_error('kelas', '<small class="text-danger">', '</small>') ?>
+                                                            <?= form_error('tahunpelajaran', '<small class="text-danger">', '</small>') ?>
                                                         </div>
                                                     </div>
                                                     <div class="row">
                                                         <div class="col mb-3">
-                                                            <label for="type" class="form-label">Jurusan</label>
-                                                            <select name="jurusanid" id="jurusanid" class="form-select">
-                                                                <?php foreach ($jurusanid as $j): ?>
-                                                                    <option value="<?= $j['id'] ?>" <?php if ($j['id'] == $kj['jurusanid']) {
+                                                            <label for="type" class="form-label">semester</label>
+                                                            <select name="semesterid" id="semesterid" class="form-select">
+                                                                <?php foreach ($semester as $s): ?>
+                                                                    <option value="<?= $s['id'] ?>" <?php if ($s['id'] == $tp['semesterid']) {
                                                                           echo "selected";
-                                                                      } ?>><?= $j['jurusan'] ?></option>
+                                                                      } ?>><?= $s['semester'] ?></option>
                                                                 <?php endforeach ?>
                                                             </select>
-                                                            <?= form_error('jurusanid', '<small class="text-danger">', '</small>') ?>
+                                                            <!-- <small class="text-muted">Ex. master/sekolah</small> -->
+                                                            <?= form_error('semesterid', '<small class="text-danger">', '</small>') ?>
                                                         </div>
                                                     </div>
 
                                                 </div>
                                                 <div class="modal-footer">
                                                     <input type="hidden" id="id" name="id" class="form-control"
-                                                        value="<?= $kj['kelasid'] ?>" placeholder="Enter ID" />
+                                                        value="<?= $tp['tapelid'] ?>" placeholder="Enter ID" />
                                                     <button type="button" class="btn btn-outline-secondary"
                                                         data-bs-dismiss="modal">
                                                         Close
@@ -121,26 +123,26 @@
                                 <!-- End Modal Ubah -->
 
                                 <!-- Modal Hapus -->
-                                <div class="modal fade" id="hapusmodal<?= $kj['kelasid'] ?>" tabindex="-1"
+                                <div class="modal fade" id="hapus_modal<?= $tp['tapelid'] ?>" tabindex="-1"
                                     aria-hidden="true">
                                     <div class="modal-dialog" role="document">
-                                        <form action="<?= base_url('Kelas/hapus') ?>" method="post">
+                                        <form action="<?= base_url('Tapel/hapus') ?>" method="post">
                                             <div class="modal-content">
                                                 <div class="modal-header">
-                                                    <h5 class="modal-title" id="exampleModalLabel1">Hapus Kelas</h5>
+                                                    <h5 class="modal-title" id="exatpleModalLabel1">Hapus Tapel</h5>
                                                     <button type="button" class="btn-close" data-bs-dismiss="modal"
                                                         aria-label="Close"></button>
                                                 </div>
                                                 <div class="modal-body">
-                                                    <p>Apakah anda yakin menghapus data <b>
-                                                            <?= $kj['kelas'] ?> ?
+                                                    <p>Apakah anda yakin menghapus Tahun Pelajaran <br><b>
+                                                            <?= $tp['tahunpelajaran'] ?> ?
                                                         </b> </p>
 
                                                     <p>Data yang dihapus tidak dapat dikembalikan.</p>
                                                 </div>
                                                 <div class="modal-footer">
                                                     <input type="hidden" id="id" name="id" class="form-control"
-                                                        placeholder="Enter ID" value="<?= $kj['kelasid'] ?>" />
+                                                        placeholder="Enter ID" value="<?= $tp['tapelid'] ?>" />
                                                     <button type="button" class="btn btn-outline-secondary"
                                                         data-bs-dismiss="modal">
                                                         Close
@@ -161,37 +163,38 @@
             </div>
 
             <!-- Modal Tambah -->
-            <div class="modal fade" id="tambahmodal" tabindex="-1" aria-hidden="true">
+            <div class="modal fade" id="tambah_modal" tabindex="-1" aria-hidden="true">
                 <div class="modal-dialog" role="document">
-                    <form action="<?= base_url('Kelas/tambah') ?>" method="post">
+                    <form action="<?= base_url('Tapel/tambah') ?>" method="post">
                         <div class="modal-content">
                             <div class="modal-header">
-                                <h5 class="modal-title" id="exampleModalLabel1">Tambah Kelas</h5>
+                                <h5 class="modal-title" id="exatpleModalLabel1">Tambah Tapel</h5>
                                 <button type="button" class="btn-close" data-bs-dismiss="modal"
                                     aria-label="Close"></button>
-                            </div>
-                            <div class="row">
-                                <div class="col mb-3">
-                                    <label for="type" class="form-label">Kelas</label>
-                                    <input type="text" id="kelas" name="kelas" class="form-control"
-                                        placeholder="Enter title" />
-                                    <!-- <small class="text-muted">Ex. Guru, Tenaga Kependidikan</small> -->
-                                    <?= form_error('kelas', '<small class="text-danger">', '</small>') ?>
-                                </div>
                             </div>
                             <div class="modal-body">
                                 <div class="row">
                                     <div class="col mb-3">
-                                        <label for="type" class="form-label">Jurusan</label>
-                                        <select name="jurusanid" id="jurusanid" class="form-select">
-                                            <?php foreach ($jurusanid as $j): ?>
-                                                <option value="<?= $j['id'] ?>" ?><?= $j['jurusan'] ?></option>
+                                        <label for="type" class="form-label">Judul Tapel</label>
+                                        <input type="text" id="tahunpelajaran" name="tahunpelajaran"
+                                            class="form-control" placeholder="Enter Tahun Pelajaran" />
+                                        <!-- <small class="text-muted">Ex. Guru, Tenaga Kependidikan</small> -->
+                                        <?= form_error('tahunpelajaran', '<small class="text-danger">', '</small>') ?>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col mb-3">
+                                        <label for="type" class="form-label">semester</label>
+                                        <select name="semesterid" id="semesterid" class="form-select">
+                                            <?php foreach ($semester as $s): ?>
+                                                <option value="<?= $s['id'] ?>" ?><?= $s['semester'] ?></option>
                                             <?php endforeach ?>
                                         </select>
-                                        <?= form_error('jurusanid', '<small class="text-danger">', '</small>') ?>
+                                        <!-- <small class="text-muted">Ex. master/sekolah</small> -->
+                                        <?= form_error('semesterid', '<small class="text-danger">', '</small>') ?>
                                     </div>
-
                                 </div>
+
                                 <!--                                 
                                 <div class="row g-2">
                                     <div class="col mb-0">
