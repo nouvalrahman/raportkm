@@ -103,7 +103,7 @@ class Kelas extends CI_Controller
     public function hapus()
     {
         $this->form_validation->set_rules(
-            'Id',
+            'id',
             'id',
             'required',
             [
@@ -112,10 +112,10 @@ class Kelas extends CI_Controller
         );
 
         if ($this->form_validation->run() == FALSE) {
-            $this->session->set_flashdata('message_error', 'Terdapat Data yang kosong, Silahkan Lengkapi data ');
+            $this->session->set_flashdata('message_error', 'Maaf Data tidak berhasil terhapus ');
             redirect('Kelas/index');
         } else {
-            $this->Kelasmodel->hapus();
+            $this->kelasmodel->hapus();
             $this->session->set_flashdata('message', 'Data Berhasil Dihapus');
             redirect('Kelas/index');
         }

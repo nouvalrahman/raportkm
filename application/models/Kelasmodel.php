@@ -43,7 +43,15 @@ class Kelasmodel extends CI_Model
         $this->db->update('kelas');
     }
 
+    public function hapus()
+    {
+        $id = htmlspecialchars($this->input->post('id'));
 
+        $this->db->set('is_active', 0);
+        $this->db->where('id', $id);
+        $this->db->update('kelas');
+
+    }
 
 
 }

@@ -2,7 +2,7 @@
     <!-- Content -->
 
     <div class="container-xxl flex-grow-1 container-p-y">
-        <h4 class="fw-bold py-3 mb-4"><span class="text-muted fw-light">Access /</span>Sub Menu</h4>
+        <h4 class="fw-bold py-3 mb-4"><span class="text-muted fw-light">Access /</span>Mata Pelajaran</h4>
 
 
         <?php if ($this->session->flashdata('message')): ?>
@@ -21,7 +21,7 @@
             <div class="card-header">
                 <div class="row">
                     <div class="col">
-                        <h5>Sub Menu</h5>
+                        <h5>Mata Pelajaran</h5>
 
                     </div>
                     <div class="col">
@@ -40,9 +40,8 @@
                         <thead>
                             <tr>
                                 <th>No</th>
-                                <th>Menu</th>
-                                <th>Title</th>
-                                <th>URL</th>
+                                <th>Mata Pelajaran</th>
+                                <th>Kelompok</th>
                                 <th>Actions</th>
                             </tr>
                         </thead>
@@ -50,79 +49,61 @@
                             <?php
                             $no = 1;
                             ?>
-                            <?php foreach ($submenu_join as $sbmj): ?>
+                            <?php foreach ($mapel as $mp): ?>
                                 <tr>
                                     <td>
                                         <?= $no++ ?>
                                     </td>
                                     <td>
-                                        <?= $sbmj['menu'] ?>
+                                        <?= $mp['mata_pelajaran'] ?>
                                     </td>
                                     <td>
-                                        <?= $sbmj['title'] ?>
-                                    </td>
-                                    <td>
-                                        <?= $sbmj['url'] ?>
+                                        <?= $mp['kelompok'] ?>
                                     </td>
                                     <td>
                                         <a href="#" class="btn btn-sm btn-warning" data-bs-toggle="modal"
-                                            data-bs-target="#ubah_modal<?= $sbmj['submenuid'] ?>">Edit</a>
+                                            data-bs-target="#ubah_modal<?= $mp['id'] ?>">Edit</a>
                                         <a href="#" class="btn btn-sm btn-danger" data-bs-toggle="modal"
-                                            data-bs-target="#hapus_modal<?= $sbmj['submenuid'] ?>">Hapus</a>
+                                            data-bs-target="#hapus_modal<?= $mp['id'] ?>">Hapus</a>
                                     </td>
                                 </tr>
 
 
                                 <!-- Modal Ubah -->
-                                <div class="modal fade" id="ubah_modal<?= $sbmj['submenuid'] ?>" tabindex="-1"
+                                <div class="modal fade" id="ubah_modal<?= $mp['id'] ?>" tabindex="-1"
                                     aria-hidden="true">
                                     <div class="modal-dialog" role="document">
-                                        <form action="<?= base_url('submenu/ubah') ?>" method="post">
+                                        <form action="<?= base_url('Mapel/ubah') ?>" method="post">
                                             <div class="modal-content">
                                                 <div class="modal-header">
-                                                    <h5 class="modal-title" id="exampleModalLabel1">Ubah Sub Menu</h5>
+                                                    <h5 class="modal-title" id="exampleModalLabel1">Ubah Mapel</h5>
                                                     <button type="button" class="btn-close" data-bs-dismiss="modal"
                                                         aria-label="Close"></button>
                                                 </div>
                                                 <div class="modal-body">
                                                     <div class="row">
                                                         <div class="col mb-3">
-                                                            <label for="type" class="form-label">Menu</label>
-                                                            <select name="menu_id" id="menu_id" class="form-select">
-                                                                <?php foreach ($menu as $m): ?>
-                                                                    <option value="<?= $m['id'] ?>" <?php if ($m['id'] == $sbmj['menu_id']) {
-                                                                          echo "selected";
-                                                                      } ?>><?= $m['menu'] ?></option>
-                                                                <?php endforeach ?>
-                                                            </select>
-
-                                                            <?= form_error('menu_id', '<small class="text-danger">', '</small>') ?>
-                                                        </div>
-
-                                                    </div>
-                                                    <div class="row">
-                                                        <div class="col mb-3">
-                                                            <label for="type" class="form-label">Judul Sub Menu</label>
-                                                            <input type="text" id="title" name="title" class="form-control"
-                                                                value="<?= $sbmj['title'] ?>" placeholder="Enter title" />
-                                                            <small class="text-muted">Ex. Guru, Tenaga Kependidikan</small>
-                                                            <?= form_error('title', '<small class="text-danger">', '</small>') ?>
+                                                            <label for="type" class="form-label">Judul Mapel</label>
+                                                            <input type="text" id="mata_pelajaran" name="mata_pelajaran" class="form-control"
+                                                                value="<?= $mp['mata_pelajaran'] ?>" placeholder="Enter title" />
+                                                            <!-- <small class="text-muted">Ex. Guru, Tenaga Kependidikan</small> -->
+                                                            <?= form_error('mata_pelajaran', '<small class="text-danger">', '</small>') ?>
                                                         </div>
                                                     </div>
                                                     <div class="row">
                                                         <div class="col mb-3">
                                                             <label for="type" class="form-label">URL Sub Menu</label>
-                                                            <input type="text" id="url" name="url" class="form-control"
-                                                                value="<?= $sbmj['url'] ?>" placeholder="Enter URL" />
-                                                            <small class="text-muted">Ex. master/sekolah</small>
-                                                            <?= form_error('url', '<small class="text-danger">', '</small>') ?>
+                                                            <input type="text" id="kelompok" name="kelompok" class="form-control"
+                                                                value="<?= $mp['kelompok'] ?>" placeholder="Enter Kelompok" />
+                                                            <!-- <small class="text-muted">Ex. master/sekolah</small> -->
+                                                            <?= form_error('kelompok', '<small class="text-danger">', '</small>') ?>
                                                         </div>
                                                     </div>
 
                                                 </div>
                                                 <div class="modal-footer">
                                                     <input type="hidden" id="id" name="id" class="form-control"
-                                                        value="<?= $sbmj['submenuid'] ?>" placeholder="Enter ID" />
+                                                        value="<?= $mp['id'] ?>" placeholder="Enter ID" />
                                                     <button type="button" class="btn btn-outline-secondary"
                                                         data-bs-dismiss="modal">
                                                         Close
@@ -136,26 +117,26 @@
                                 <!-- End Modal Ubah -->
 
                                 <!-- Modal Hapus -->
-                                <div class="modal fade" id="hapus_modal<?= $sbmj['submenuid'] ?>" tabindex="-1"
+                                <div class="modal fade" id="hapus_modal<?= $mp['id'] ?>" tabindex="-1"
                                     aria-hidden="true">
                                     <div class="modal-dialog" role="document">
-                                        <form action="<?= base_url('submenu/hapus') ?>" method="post">
+                                        <form action="<?= base_url('Mapel/hapus') ?>" method="post">
                                             <div class="modal-content">
                                                 <div class="modal-header">
-                                                    <h5 class="modal-title" id="exampleModalLabel1">Hapus Sub Menu</h5>
+                                                    <h5 class="modal-title" id="exampleModalLabel1">Hapus Mapel</h5>
                                                     <button type="button" class="btn-close" data-bs-dismiss="modal"
                                                         aria-label="Close"></button>
                                                 </div>
                                                 <div class="modal-body">
-                                                    <p>Apakah anda yakin menghapus data <b>
-                                                            <?= $sbmj['menu'] . " dengan sub menu " . $sbmj['title'] ?> ?
+                                                    <p>Apakah anda yakin menghapus Mata Pelajaran <br><b>
+                                                            <?= $mp['mata_pelajaran'] ?> ?
                                                         </b> </p>
 
                                                     <p>Data yang dihapus tidak dapat dikembalikan.</p>
                                                 </div>
                                                 <div class="modal-footer">
                                                     <input type="hidden" id="id" name="id" class="form-control"
-                                                        placeholder="Enter ID" value="<?= $sbmj['submenuid'] ?>" />
+                                                        placeholder="Enter ID" value="<?= $mp['id'] ?>" />
                                                     <button type="button" class="btn btn-outline-secondary"
                                                         data-bs-dismiss="modal">
                                                         Close
@@ -178,43 +159,30 @@
             <!-- Modal Tambah -->
             <div class="modal fade" id="tambah_modal" tabindex="-1" aria-hidden="true">
                 <div class="modal-dialog" role="document">
-                    <form action="<?= base_url('submenu/tambah') ?>" method="post">
+                    <form action="<?= base_url('Mapel/tambah') ?>" method="post">
                         <div class="modal-content">
                             <div class="modal-header">
-                                <h5 class="modal-title" id="exampleModalLabel1">Tambah Sub Menu</h5>
+                                <h5 class="modal-title" id="exampleModalLabel1">Tambah Mapel</h5>
                                 <button type="button" class="btn-close" data-bs-dismiss="modal"
                                     aria-label="Close"></button>
                             </div>
                             <div class="modal-body">
                                 <div class="row">
                                     <div class="col mb-3">
-                                        <label for="type" class="form-label">Menu</label>
-                                        <select name="menu_id" id="menu_id" class="form-select">
-                                            <?php foreach ($menu as $m): ?>
-                                                <option value="<?= $m['id'] ?>"><?= $m['menu'] ?></option>
-                                            <?php endforeach ?>
-                                        </select>
-
-                                        <?= form_error('menu_id', '<small class="text-danger">', '</small>') ?>
-                                    </div>
-
-                                </div>
-                                <div class="row">
-                                    <div class="col mb-3">
-                                        <label for="type" class="form-label">Judul Sub Menu</label>
-                                        <input type="text" id="title" name="title" class="form-control"
-                                            placeholder="Enter title" />
-                                        <small class="text-muted">Ex. Guru, Tenaga Kependidikan</small>
-                                        <?= form_error('title', '<small class="text-danger">', '</small>') ?>
+                                        <label for="type" class="form-label">Judul Mapel</label>
+                                        <input type="text" id="mata_pelajaran" name="mata_pelajaran" class="form-control"
+                                            placeholder="Enter mata Pelajaran" />
+                                        <!-- <small class="text-muted">Ex. Guru, Tenaga Kependidikan</small> -->
+                                        <?= form_error('mata_pelajaran', '<small class="text-danger">', '</small>') ?>
                                     </div>
                                 </div>
                                 <div class="row">
                                     <div class="col mb-3">
-                                        <label for="type" class="form-label">URL Sub Menu</label>
-                                        <input type="text" id="url" name="url" class="form-control"
-                                            placeholder="Enter URL" />
-                                        <small class="text-muted">Ex. master/sekolah</small>
-                                        <?= form_error('url', '<small class="text-danger">', '</small>') ?>
+                                        <label for="type" class="form-label">Kelompok mapel</label>
+                                        <input type="text" id="kelompok" name="kelompok" class="form-control"
+                                            placeholder="Enter kelompok" />
+                                        <!-- <small class="text-muted">Ex. master/sekolah</small> -->
+                                        <?= form_error('kelompok', '<small class="text-danger">', '</small>') ?>
                                     </div>
                                 </div>
 
