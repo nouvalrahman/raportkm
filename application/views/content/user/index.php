@@ -143,7 +143,7 @@
                                                         data-bs-target="Close"></button> -->
                                                 </div>
                                                 <div class="modal-body">
-                                                    <p>Apakah Anda Yakin Ingin Menghapus Data <b>
+                                                    <p>Apakah Anda Yakin Ingin Menghapus Data <br><b>
                                                             <?= $us['nama'] ?> ?
                                                         </b> </p>
                                                     <p>Data Yang Dihapus Tidak Dapat dikembalikan.</p>

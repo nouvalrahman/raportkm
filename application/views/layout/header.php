@@ -23,6 +23,7 @@
         integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65" crossorigin="anonymous">
 
     <!-- js -->
+    <script src ="<?= base_url('assets')?> js/bootstrap-datetimepicker.min" ></script>
     <!-- <script src="<?= base_url('assets') ?> js/main.js"></script> -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
     <!-- script for modal -->
