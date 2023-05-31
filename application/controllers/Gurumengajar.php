@@ -1,13 +1,16 @@
 <?php
 defined('BASEPATH') or exit('No direct script access allowed');
 
-class Identitas extends CI_Controller
+class Gurumengajar extends CI_Controller
 {
     public function __construct()
     {
         parent::__construct();
         $this->load->library('form_validation');
-        $this->load->model('Identitasmodel');
+        $this->load->model('usermodel');
+        $this->load->model('mapelmodel');
+        $this->load->model('tapelmodel');
+        $this->load->model('gurumengajarmodel');
         $this->load->library('session');
     }
     /**
@@ -27,73 +30,110 @@ class Identitas extends CI_Controller
      */
     public function index()
     {
-        $data['title'] = "Identtias Sekolah - E-Raport";
-        $data['identitas'] = $this->Identitasmodel->get_identitas();
+        $data['title'] = "Guru Mengajar - E-Raport";
+        $data['guru'] = $this->usermodel->get_guru();
+        $data['mapel'] = $this->mapelmodel->get_mapel();
+        $data['tapel'] = $this->tapelmodel->get_tapel();
+        $data['semester'] = $this->tapelmodel->get_semester();
+        $data['gurumengajar'] = $this->gurumengajarmodel->join_guru_mapel_kelas_tapel_semester();
         $this->load->view('layout/header', $data);
-        $this->load->view('content/identitas/index', $data);
+        $this->load->view('content/gurumengajar/index', $data);
         $this->load->view('layout/sidebar', $data);
         $this->load->view('layout/footer', $data);
-        // var_dump($data);
+        // var_dump($data['guru']);
         // die;
     }
     public function tambah()
     {
         $this->form_validation->set_rules(
-            'tglraport',
-            'Tglraport',
+            'userid',
+            'Userid',
             'required',
             [
                 'required' => '%s Harus Diisi'
             ]
         );
         $this->form_validation->set_rules(
-            'kepsek',
-            'Kepsek',
+            'mapelid',
+            'Mapelid',
             'required',
             [
                 'required' => '%s Harus Diisi'
             ]
         );
         $this->form_validation->set_rules(
-            'sekolah',
-            'Sekolah',
+            'kelasid',
+            'Kelasid',
             'required',
             [
                 'required' => '%s Harus Diisi'
             ]
         );
+        $this->form_validation->set_rules(
+            'tapelid',
+            'Tapelid',
+            'required',
+            [
+                'required' => '%s Harus Diisi'
+            ]
+        );
+        $this->form_validation->set_rules(
+            'semesterid',
+            'Semesterid',
+            'required',
+            [
+                'required' => '%s Harus Diisi'
+            ]
+        );
+        
 
         if ($this->form_validation->run() == FALSE) {
             $this->session->set_flashdata('message_error', 'Terdapat Data yang kosong, Silahkan Lengkapi data ');
-            redirect('Identitas/tambah');
+            redirect('Gurumengajar/tambah');
         } else {
-            $this->Identitasmodel->tambah();
+            $this->Gurumengajarmodel->tambah();
             $this->session->set_flashdata('message', 'Data Berhasil Ditambahkan');
-            redirect('Identitas/index');
+            redirect('Gurumengajar/index');
         }
 
     }
     public function ubah()
     {
         $this->form_validation->set_rules(
-            'tglraport',
-            'Tglraport',
+            'userid',
+            'Userid',
             'required',
             [
                 'required' => '%s Harus Diisi'
             ]
         );
         $this->form_validation->set_rules(
-            'kepsek',
-            'Kepsek',
+            'mapelid',
+            'Mapelid',
             'required',
             [
                 'required' => '%s Harus Diisi'
             ]
         );
         $this->form_validation->set_rules(
-            'sekolah',
-            'Sekolah',
+            'kelasid',
+            'Kelasid',
+            'required',
+            [
+                'required' => '%s Harus Diisi'
+            ]
+        );
+        $this->form_validation->set_rules(
+            'tapelid',
+            'Tapelid',
+            'required',
+            [
+                'required' => '%s Harus Diisi'
+            ]
+        );
+        $this->form_validation->set_rules(
+            'semesterid',
+            'Semesterid',
             'required',
             [
                 'required' => '%s Harus Diisi'
@@ -104,7 +144,7 @@ class Identitas extends CI_Controller
             $this->session->set_flashdata('message_error', 'Terdapat Data yang kosong, Silahkan Lengkapi data ');
             redirect('Identitas/ubah');
         } else {
-            $this->Identitasmodel->ubah();
+            $this->Gurumengajarmodel->ubah();
             $this->session->set_flashdata('message', 'Data Berhasil Diubah');
             redirect('Identitas/index');
         }
@@ -123,11 +163,11 @@ class Identitas extends CI_Controller
 
         if ($this->form_validation->run() == FALSE) {
             $this->session->set_flashdata('message_error', 'Maaf, Data tidak berhasil dihapus ');
-            redirect('Identitas/hapus');
+            redirect('Gurumengajar/hapus');
         } else {
-            $this->Identitasmodel->hapus();
+            $this->Gurumengajarmodel->hapus();
             $this->session->set_flashdata('message', 'Data Berhasil Dihapus');
-            redirect('Identitas/index');
+            redirect('Gurumengajar/index');
         }
     }
 }

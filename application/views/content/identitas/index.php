@@ -182,15 +182,6 @@
                             <div class="modal-body">
                                 <div class="row">
                                     <div class="col mb-3">
-                                    <div class="datepickers" id="id_0">
-                                    <form action="" method="post" class="datepickers">
-              <div class="form-group">
-                <!-- <label class="label-control" for="id_start_datetime">Datetime picker</label> -->
-                <div class="input-group date" id="id_0">
-                  <input type="text" value="" class="form-control" placeholder="MM/DD/YYYY hh:mm:ss" required/>
-                </div>
-              </div>
-            </form>
                                         <label for="type" class="form-label">Tanggal Raport</label>
                                         <input type="date" id="tglraport" name="tglraport" class="form-control"
                                             placeholder="Enter tglraport" />

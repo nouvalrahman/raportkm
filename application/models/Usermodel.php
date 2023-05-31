@@ -7,6 +7,10 @@ class Usermodel extends CI_Model
     {
         return $this->db->get_where('user', ['is_active' => 1])->result_array();
     }
+    public function get_guru()
+    {
+        return $this->db->get_where('user', ['role_id' => 2])->result_array();
+    }
     public function join_user_role()
     {
         $this->db->select('user.id AS userid, user.username, user.password, user.nama, user.jk, user.is_active, user.role_id, role.id AS roleid, role.role');

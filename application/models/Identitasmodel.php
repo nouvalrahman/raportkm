@@ -15,7 +15,7 @@ Class Identitasmodel extends CI_Model
             'sekolah' => htmlspecialchars($this->input->post('sekolah')),
             'is_active' => 1,
         ];
-        $this->db->insert('mapel', $data);
+        $this->db->insert('identitas', $data);
     }
 
     public function ubah()
