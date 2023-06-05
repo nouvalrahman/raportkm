@@ -29,7 +29,6 @@ class Tapel extends CI_Controller
     {
         $data['title'] = "Tahun Pelajaran - E-Raport";
         $data['tapel'] = $this->Tapelmodel->get_tapel();
-        $data['tapeljoin'] = $this->Tapelmodel->join_tapel_semester();
         $data['semester'] = $this->Tapelmodel->get_semester();
         $this->load->view('layout/header', $data);
         $this->load->view('content/tapel/index', $data);
@@ -48,14 +47,7 @@ class Tapel extends CI_Controller
                 'required' => '%s Harus Diisi'
             ]
         );
-        $this->form_validation->set_rules(
-            'semesterid',
-            'Semesterid',
-            'required',
-            [
-                'required' => '%s Harus Diisi'
-            ]
-        );
+
 
         if ($this->form_validation->run() == FALSE) {
             $this->session->set_flashdata('message_error', 'Terdapat Data yang kosong, Silahkan Lengkapi data ');
@@ -77,14 +69,6 @@ class Tapel extends CI_Controller
                 'required' => '%s Harus Diisi'
             ]
 
-        );
-        $this->form_validation->set_rules(
-            'semesterid',
-            'Semesterid',
-            'required',
-            [
-                'required' => '%s Harus Diisi'
-            ]
         );
 
         if ($this->form_validation->run() == FALSE) {

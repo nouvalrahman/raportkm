@@ -11,7 +11,7 @@
                     </div>
                     <div class="col">
                         <div class="float-end">
-                        <a href="#" class="btn btn-sm btn-primary" data-bs-toggle="modal"
+                            <a href="#" class="btn btn-sm btn-primary" data-bs-toggle="modal"
                                 data-bs-target="#tambah_modal">Tambah</a>
                         </div>
                     </div>
@@ -141,8 +141,7 @@
                                 <!-- End modal ubah -->
 
                                 <!-- modal hapus -->
-                                <div class="modal fade" id="hapus_modal<?= $gm['id'] ?>" tabindex="-1"
-                                    aria-hidden="true">
+                                <div class="modal fade" id="hapus_modal<?= $gm['id'] ?>" tabindex="-1" aria-hidden="true">
                                     <div class="modal-dialog" role="document">
                                         <form action="<?= base_url('User/hapus') ?>" method="post">
                                             <div class="modal-content">
@@ -175,10 +174,13 @@
                 </div>
             </div>
 
+            <?php
+
+            ?>
             <!-- Modal Tambah -->
             <div class="modal fade" id="tambah_modal" tabindex="-1" aria-hidden="true">
                 <div class="modal-dialog" role="document">
-                    <form action="<?= base_url('Gurumengajar/tambah') ?>" method="post">
+                    <form action="<?= base_url('Gurumengajar/setguru') ?>" method="post">
                         <div class="modal-content">
                             <div class="modal-header">
                                 <h5 class="modal-title" id="exatpleModalLabel1">Tambah Guru Mengajar</h5>
@@ -205,6 +207,30 @@
                                         </select>
                                         <!-- <small class="text-muted">Ex. master/sekolah</small> -->
                                         <?= form_error('userid', '<small class="text-danger">', '</small>') ?>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col mb-3">
+                                        <label for="type" class="form-label">Pilih Tahun Pelajaran</label>
+                                        <select name="tapelid" id="tapelid" class="form-select">
+                                            <?php foreach ($tapel as $t): ?>
+                                                <option value="<?= $t['id'] ?>" ?><?= $t['tahunpelajaran'] ?></option>
+                                            <?php endforeach ?>
+                                        </select>
+                                        <!-- <small class="text-muted">Ex. master/sekolah</small> -->
+                                        <?= form_error('tapelid', '<small class="text-danger">', '</small>') ?>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col mb-3">
+                                        <label for="type" class="form-label">Pilih Semester</label>
+                                        <select name="semesterid" id="semesterid" class="form-select">
+                                            <?php foreach ($semester as $s): ?>
+                                                <option value="<?= $s['id'] ?>" ?><?= $s['semester'] ?></option>
+                                            <?php endforeach ?>
+                                        </select>
+                                        <!-- <small class="text-muted">Ex. master/sekolah</small> -->
+                                        <?= form_error('semesterid', '<small class="text-danger">', '</small>') ?>
                                     </div>
                                 </div>
 

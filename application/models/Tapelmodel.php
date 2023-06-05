@@ -26,7 +26,6 @@ class Tapelmodel extends CI_Model
     {
         $data = [
             'tahunpelajaran' => htmlspecialchars($this->input->post('tahunpelajaran')),
-            'semesterid' => htmlspecialchars($this->input->post('semesterid')),
             'is_active' => 1,
         ];
         $this->db->insert('tapel', $data);
@@ -35,10 +34,9 @@ class Tapelmodel extends CI_Model
     {
         $id = htmlspecialchars($this->input->post('id'));
         $tapel = htmlspecialchars($this->input->post('tahunpelajaran'));
-        $semesterid = htmlspecialchars($this->input->post('semesterid'));
+
 
         $this->db->set('tahunpelajaran', $tapel);
-        $this->db->set('semesterid', $semesterid);
         $this->db->where('id', $id);
         $this->db->update('tapel');
     }

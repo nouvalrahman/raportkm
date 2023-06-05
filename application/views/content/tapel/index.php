@@ -41,7 +41,6 @@
                             <tr>
                                 <th>No</th>
                                 <th>Tahun Pelajaran</th>
-                                <th>semester</th>
                                 <th>Actions</th>
                             </tr>
                         </thead>
@@ -49,7 +48,7 @@
                             <?php
                             $no = 1;
                             ?>
-                            <?php foreach ($tapeljoin as $tp): ?>
+                            <?php foreach ($tapel as $tp): ?>
                                 <tr>
                                     <td>
                                         <?= $no++ ?>
@@ -58,20 +57,16 @@
                                         <?= $tp['tahunpelajaran'] ?>
                                     </td>
                                     <td>
-                                        <?= $tp['semester'] ?>
-                                    </td>
-                                    <td>
                                         <a href="#" class="btn btn-sm btn-warning" data-bs-toggle="modal"
-                                            data-bs-target="#ubah_modal<?= $tp['tapelid'] ?>">Edit</a>
+                                            data-bs-target="#ubah_modal<?= $tp['id'] ?>">Edit</a>
                                         <a href="#" class="btn btn-sm btn-danger" data-bs-toggle="modal"
-                                            data-bs-target="#hapus_modal<?= $tp['tapelid'] ?>">Hapus</a>
+                                            data-bs-target="#hapus_modal<?= $tp['id'] ?>">Hapus</a>
                                     </td>
                                 </tr>
 
 
                                 <!-- Modal Ubah -->
-                                <div class="modal fade" id="ubah_modal<?= $tp['tapelid'] ?>" tabindex="-1"
-                                    aria-hidden="true">
+                                <div class="modal fade" id="ubah_modal<?= $tp['id'] ?>" tabindex="-1" aria-hidden="true">
                                     <div class="modal-dialog" role="document">
                                         <form action="<?= base_url('Tapel/ubah') ?>" method="post">
                                             <div class="modal-content">
@@ -91,25 +86,10 @@
                                                             <?= form_error('tahunpelajaran', '<small class="text-danger">', '</small>') ?>
                                                         </div>
                                                     </div>
-                                                    <div class="row">
-                                                        <div class="col mb-3">
-                                                            <label for="type" class="form-label">semester</label>
-                                                            <select name="semesterid" id="semesterid" class="form-select">
-                                                                <?php foreach ($semester as $s): ?>
-                                                                    <option value="<?= $s['id'] ?>" <?php if ($s['id'] == $tp['semesterid']) {
-                                                                          echo "selected";
-                                                                      } ?>><?= $s['semester'] ?></option>
-                                                                <?php endforeach ?>
-                                                            </select>
-                                                            <!-- <small class="text-muted">Ex. master/sekolah</small> -->
-                                                            <?= form_error('semesterid', '<small class="text-danger">', '</small>') ?>
-                                                        </div>
-                                                    </div>
-
                                                 </div>
                                                 <div class="modal-footer">
                                                     <input type="hidden" id="id" name="id" class="form-control"
-                                                        value="<?= $tp['tapelid'] ?>" placeholder="Enter ID" />
+                                                        value="<?= $tp['id'] ?>" placeholder="Enter ID" />
                                                     <button type="button" class="btn btn-outline-secondary"
                                                         data-bs-dismiss="modal">
                                                         Close
@@ -123,8 +103,7 @@
                                 <!-- End Modal Ubah -->
 
                                 <!-- Modal Hapus -->
-                                <div class="modal fade" id="hapus_modal<?= $tp['tapelid'] ?>" tabindex="-1"
-                                    aria-hidden="true">
+                                <div class="modal fade" id="hapus_modal<?= $tp['id'] ?>" tabindex="-1" aria-hidden="true">
                                     <div class="modal-dialog" role="document">
                                         <form action="<?= base_url('Tapel/hapus') ?>" method="post">
                                             <div class="modal-content">
@@ -142,7 +121,7 @@
                                                 </div>
                                                 <div class="modal-footer">
                                                     <input type="hidden" id="id" name="id" class="form-control"
-                                                        placeholder="Enter ID" value="<?= $tp['tapelid'] ?>" />
+                                                        placeholder="Enter ID" value="<?= $tp['id'] ?>" />
                                                     <button type="button" class="btn btn-outline-secondary"
                                                         data-bs-dismiss="modal">
                                                         Close
@@ -182,18 +161,7 @@
                                         <?= form_error('tahunpelajaran', '<small class="text-danger">', '</small>') ?>
                                     </div>
                                 </div>
-                                <div class="row">
-                                    <div class="col mb-3">
-                                        <label for="type" class="form-label">semester</label>
-                                        <select name="semesterid" id="semesterid" class="form-select">
-                                            <?php foreach ($semester as $s): ?>
-                                                <option value="<?= $s['id'] ?>" ?><?= $s['semester'] ?></option>
-                                            <?php endforeach ?>
-                                        </select>
-                                        <!-- <small class="text-muted">Ex. master/sekolah</small> -->
-                                        <?= form_error('semesterid', '<small class="text-danger">', '</small>') ?>
-                                    </div>
-                                </div>
+
 
                                 <!--                                 
                                 <div class="row g-2">
