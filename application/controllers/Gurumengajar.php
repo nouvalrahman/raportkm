@@ -35,6 +35,7 @@ class Gurumengajar extends CI_Controller
         $data['guru'] = $this->usermodel->get_guru();
         $data['mapel'] = $this->mapelmodel->get_mapel();
         $data['tapel'] = $this->tapelmodel->get_tapel();
+        $data['kelas'] = $this->kelasmodel->get_kelas();
         $data['semester'] = $this->tapelmodel->get_semester();
         $data['gurumengajar'] = $this->gurumengajarmodel->join_guru_mapel_kelas_tapel_semester();
         $this->load->view('layout/header', $data);
