@@ -1,21 +1,26 @@
 <?php
 
-Class Gurumengajarmodel extends CI_Model
+class Gurumengajarmodel extends CI_Model
 {
     public function get_gurumengajar()
     {
         return $this->db->get_where('gurumengajar', ['is_active' => 1])->result_array();
     }
+    public function get_gurumengajarid($data)
+    {
+        return $this->db->get_where('gurumengajar', ['id' => $data])->result_array();
+    }
+
 
     public function join_guru_mapel_kelas_tapel_semester()
     {
         $this->db->select('*');
         $this->db->from('gurumengajar');
-        $this->db->join('mapel', 'mapel.id = gurumengajar.mapelid' );
-        $this->db->join('user', 'user.id = gurumengajar.userid' );
-        $this->db->join('kelas', 'kelas.id = gurumengajar.kelasid' );
-        $this->db->join('tapel', 'tapel.id = gurumengajar.tapelid' );
-        $this->db->join('semester', 'semester.id = gurumengajar.semesterid' );
+        $this->db->join('mapel', 'mapel.id = gurumengajar.mapelid');
+        $this->db->join('user', 'user.id = gurumengajar.userid');
+        $this->db->join('kelas', 'kelas.id = gurumengajar.kelasid');
+        $this->db->join('tapel', 'tapel.id = gurumengajar.tapelid');
+        $this->db->join('semester', 'semester.id = gurumengajar.semesterid');
         $this->db->where('gurumengajar.is_active', 1);
         $this->db->order_by('userid', 'ASC');
         $result = $this->db->get();
@@ -24,11 +29,14 @@ Class Gurumengajarmodel extends CI_Model
     public function tambah()
     {
         $data = [
-            'mata_pelajaran' => htmlspecialchars($this->input->post('mata_pelajaran')),
-            'kelompok' => htmlspecialchars($this->input->post('kelompok')),
+            'userid' => htmlspecialchars($this->input->post('userid')),
+            'tapelid' => htmlspecialchars($this->input->post('tapelid')),
+            'semesterid' => htmlspecialchars($this->input->post('semesterid')),
+            'mapelid' => htmlspecialchars($this->input->post('mapelid')),
+            'kelasid' => htmlspecialchars($this->input->post('kelasid')),
             'is_active' => 1,
         ];
-        $this->db->insert('mapel', $data);
+        $this->db->insert('gurumengajar', $data);
     }
 
     public function ubah()

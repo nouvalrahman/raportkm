@@ -31,6 +31,11 @@ class Gurumengajar extends CI_Controller
      */
     public function index()
     {
+        $data = [
+            'user' => $this->input->get('userid'),
+            'tapel' => $this->input->get('tapelid'),
+            'semester' => $this->input->get('semesterid'),
+        ];
         $data['title'] = "Guru Mengajar - E-Raport";
         $data['guru'] = $this->usermodel->get_guru();
         $data['mapel'] = $this->mapelmodel->get_mapel();
@@ -38,11 +43,12 @@ class Gurumengajar extends CI_Controller
         $data['kelas'] = $this->kelasmodel->get_kelas();
         $data['semester'] = $this->tapelmodel->get_semester();
         $data['gurumengajar'] = $this->gurumengajarmodel->join_guru_mapel_kelas_tapel_semester();
+        // $data['gurumengajarid'] = $this->gurumengajarmodel->get_gurumengajarid();
         $this->load->view('layout/header', $data);
         $this->load->view('content/gurumengajar/index', $data);
         $this->load->view('layout/sidebar', $data);
         $this->load->view('layout/footer', $data);
-        // var_dump($data['guru']);
+        // var_dump($data['gurumengajarid']);
         // die;
     }
     public function tambah()
@@ -93,7 +99,7 @@ class Gurumengajar extends CI_Controller
             $this->session->set_flashdata('message_error', 'Terdapat Data yang kosong, Silahkan Lengkapi data ');
             redirect('Gurumengajar/tambah');
         } else {
-            $this->Gurumengajarmodel->tambah();
+            $this->gurumengajarmodel->tambah();
             $this->session->set_flashdata('message', 'Data Berhasil Ditambahkan');
             redirect('Gurumengajar/index');
         }
@@ -102,47 +108,38 @@ class Gurumengajar extends CI_Controller
 
     public function setguru()
     {
-        $this->form_validation->set_rules(
-            'userid',
-            'Userid',
-            'required',
-            [
-                'required' => '%s Harus Diisi'
-            ]
-        );
+        // $this->form_validation->set_rules(
+        //     'userid',
+        //     'Userid',
+        //     'required',
+        //     [
+        //         'required' => '%s Harus Diisi'
+        //     ]
+        // );
 
-        $this->form_validation->set_rules(
-            'tapelid',
-            'Tapelid',
-            'required',
-            [
-                'required' => '%s Harus Diisi'
-            ]
-        );
+        // $this->form_validation->set_rules(
+        //     'tapelid',
+        //     'Tapelid',
+        //     'required',
+        //     [
+        //         'required' => '%s Harus Diisi'
+        //     ]
+        // );
 
-        $this->form_validation->set_rules(
-            'semesterid',
-            'Semesterid',
-            'required',
-            [
-                'required' => '%s Harus Diisi'
-            ]
-        );
-        $user = $this->input->post('userid');
-        $tapel = $this->input->post('tapelid');
-        $semester = $this->input->post('semesterid');
+        // $this->form_validation->set_rules(
+        //     'semesterid',
+        //     'Semesterid',
+        //     'required',
+        //     [
+        //         'required' => '%s Harus Diisi'
+        //     ]
+        // );
 
-        $datasession = [
-            'userid' => $user,
-            'tapel' => $tapel,
-            'semester' => $semester,
-        ];
 
         if ($this->form_validation->run() == FALSE) {
             $this->session->set_flashdata('message_error', 'Terdapat Data yang kosong, Silahkan Lengkapi data ');
             redirect('Gurumengajar/index');
         } else {
-            $this->session->set_userdata($datasession);
             $this->session->set_flashdata('message', 'Data Berhasil Diubah');
             $data['title'] = "Guru Mengajar - E-Raport";
             $data['mapel'] = $this->mapelmodel->get_mapel();
@@ -151,11 +148,13 @@ class Gurumengajar extends CI_Controller
             $data['kelas'] = $this->kelasmodel->get_kelas();
             $data['semester'] = $this->tapelmodel->get_semester();
             $data['gurumengajar'] = $this->gurumengajarmodel->join_guru_mapel_kelas_tapel_semester();
+            // $data['gurumengajarid'] = $this->gurumengajarmodel->get_gurumengajarid();
             $this->load->view('layout/header', $data);
-            $this->load->view('content/gurumengajar/detail', $data);
+            $this->load->view('content/gurumengajar/index', $data);
             $this->load->view('layout/sidebar', $data);
             $this->load->view('layout/footer', $data);
-
+            var_dump($data['gurumengajarid']);
+            die;
         }
     }
     public function ubah()
