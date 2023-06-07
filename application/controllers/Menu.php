@@ -57,7 +57,7 @@ class Menu extends CI_Controller
 
         if ($this->form_validation->run() == FALSE) {
             $this->session->set_flashdata('message_error', 'Terdapat Data yang kosong, Silahkan Lengkapi data ');
-            redirect('Menu/tambah');
+            redirect('Menu/index');
         } else {
             $this->menumodel->tambah();
             $this->session->set_flashdata('message', 'Data Berhasil Ditambahkan');

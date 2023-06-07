@@ -6,9 +6,10 @@ class Gurumengajarmodel extends CI_Model
     {
         return $this->db->get_where('gurumengajar', ['is_active' => 1])->result_array();
     }
-    public function get_gurumengajarid($data)
+    public function get_gurumengajarid()
     {
-        return $this->db->get_where('gurumengajar', ['id' => $data])->result_array();
+        $user = $this->input->get('userid');
+        return $this->db->get_where('user', ['id' == $user])->result_array();
     }
 
 

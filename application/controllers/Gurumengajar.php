@@ -32,8 +32,8 @@ class Gurumengajar extends CI_Controller
     public function index()
     {
         $data = [
-            'user' => $this->input->get('userid'),
-            'tapel' => $this->input->get('tapelid'),
+            'user' => $this->input->get('nama'),
+            'tapel' => $this->input->get('tahunpelajaran'),
             'semester' => $this->input->get('semesterid'),
         ];
         $data['title'] = "Guru Mengajar - E-Raport";
@@ -43,7 +43,7 @@ class Gurumengajar extends CI_Controller
         $data['kelas'] = $this->kelasmodel->get_kelas();
         $data['semester'] = $this->tapelmodel->get_semester();
         $data['gurumengajar'] = $this->gurumengajarmodel->join_guru_mapel_kelas_tapel_semester();
-        // $data['gurumengajarid'] = $this->gurumengajarmodel->get_gurumengajarid();
+        $data['gurumengajarid'] = $this->gurumengajarmodel->get_gurumengajarid();
         $this->load->view('layout/header', $data);
         $this->load->view('content/gurumengajar/index', $data);
         $this->load->view('layout/sidebar', $data);
