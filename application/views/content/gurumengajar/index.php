@@ -31,7 +31,7 @@
             <div class="col-sm-4">
                 <div class="card">
                     <div class="card-body">
-                        <form action="<?= base_url('Gurumengajar/index'); ?>" method="GET">
+                        <form action="<?= base_url('Gurumengajar/setguru'); ?>" method="POST">
                             <div class="row g-2">
                                 <div class="col mt-5 mb-3">
                                     <label for="type" class="form-label">Pilih Guru</label>
@@ -82,7 +82,7 @@
                                 <div class="col mt-2 mb-3">
                                     <label for="type" class="form-label">Nama Guru</label>
                                     <input type="text" id="userid" name="userid" class="form-control"
-                                        value="<?= $this->input->get('userid') ?>" placeholder="Pilih Guru"  readonly />
+                                        value="<?= $this->session->userdata('user') ?>" placeholder="Pilih Guru"  readonly />
                                     <?= form_error('userid', '<small class="text-danger">', '</small>') ?>
                                 </div>
                             </div>
@@ -90,7 +90,7 @@
                                 <div class="col mt-2 mb-3">
                                     <label for="type" class="form-label">Tahun Pelajaran</label>
                                     <input type="text" id="tapelid" name="tapelid" class="form-control"
-                                        value="<?= $this->input->get('tapelid') ?>" placeholder="Pilih Tahun Pelajaran"  readonly />
+                                        value="<?= $this->session->userdata('tapel') ?>" placeholder="Pilih Tahun Pelajaran"  readonly />
                                     <?= form_error('tapelid', '<small class="text-danger">', '</small>') ?>
                                 </div>
                             </div>
@@ -98,7 +98,7 @@
                                 <div class="col mt-2 mb-3">
                                     <label for="type" class="form-label">Semester</label>
                                     <input type="text" id="semesterid" name="semesterid" class="form-control"
-                                        value="<?= $this->input->get('semesterid') ?>" placeholder="Pilih Semester"
+                                        value="<?= $this->session->userdata('semester') ?>" placeholder="Pilih Semester"
                                          readonly />
                                     <?= form_error('semesterid', '<small class="text-danger">', '</small>') ?>
                                 </div>
@@ -126,7 +126,7 @@
                                 </div>
                             </div>
                             <div class="float-end">
-                                <a href="<?= base_url('Gurumengajar/tambah') ?>"
+                                <a href="<?= base_url('Gurumengajar/unset') ?>"
                                     class="btn btn-secondary mt-2">Cancel</a>
                                 <button type="submit" class="btn btn-primary mt-2">Tambah</button>
                             </div>

@@ -35,8 +35,8 @@
                 <div class="row g-2">
                     <div class="col mt-5 mb-3">
                         <label for="type" class="form-label">Kode Guru</label>
-                        <input type="text" id="userid" name="userid" value="<?= $this->session->userdata('userid') ?>"
-                            class="form-control" />
+                        <input type="text" id="userid" name="userid" value="<?= $this->session->userdata('user') ?>"
+                            class="form-control" readonly/>
                         <?= form_error('userid', '<small class="text-danger">', '</small>') ?>
                     </div>
                 </div>
@@ -44,22 +44,22 @@
                     <div class="col mb-3">
                         <label for="nama" class="form-label">Tahun Pelajaran</label>
                         <input type="text" id="tapelid" name="tapelid" value="<?= $this->session->userdata('tapel') ?>"
-                            class="form-control" />
+                            class="form-control" readonly />
                         <?= form_error('tapelid', '<small class="text-danger">', '</small>') ?>
                     </div>
                 </div>
                 <div class="row g-2">
                     <div class="col mb-3">
                         <label for="type" class="form-label">Semester</label>
-                        <input type="text" id="semester" name="semester"
-                            value="<?= $this->session->userdata('semester') ?>" class="form-control" />
-                        <?= form_error('semester', '<small class="text-danger">', '</small>') ?>
+                        <input type="text" id="semesterid" name="semesterid"
+                            value="<?= $this->session->userdata('semester') ?>" class="form-control" readonly />
+                        <?= form_error('semesterid', '<small class="text-danger">', '</small>') ?>
                     </div>
                 </div>
                 <div class="row g-2">
                     <div class="col mb-3">
+                        <label for="type" class="form-label">Pilih Mapel</label>
                         <select name="mapelid" id="mapelid" class="form-select">
-                            <label for="type" class="form-label">Pilih Mapel</label>
                             <?php foreach ($mapel as $m): ?>
                                 <option value="<?= $m['id'] ?>" ?><?= $m['mata_pelajaran'] ?></option>
                             <?php endforeach ?>
@@ -70,8 +70,8 @@
                 </div>
                 <div class="row g-2">
                     <div class="col mb-3">
+                        <label for="type" class="form-label">Pilih Kelas</label>
                         <select name="kelasid" id="kelasid" class="form-select">
-                            <label for="type" class="form-label">Pilih Kelas</label>
                             <?php foreach ($kelas as $k): ?>
                                 <option value="<?= $k['id'] ?>" ?><?= $k['kelas'] ?></option>
                             <?php endforeach ?>
@@ -81,7 +81,7 @@
                     </div>
                 </div>
                 <div class="float-end">
-                    <a href="<?= base_url('User/index') ?>" class="btn btn-secondary mt-2">Cancel</a>
+                    <a href="<?= base_url('Gurumengajar/index') ?>" class="btn btn-secondary mt-2">Cancel</a>
                     <button type="submit" class="btn btn-primary mt-2">Tambah</button>
                 </div>
 

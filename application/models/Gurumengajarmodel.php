@@ -6,10 +6,16 @@ class Gurumengajarmodel extends CI_Model
     {
         return $this->db->get_where('gurumengajar', ['is_active' => 1])->result_array();
     }
-    public function get_gurumengajarid()
-    {
-        $user = $this->input->get('userid');
-        return $this->db->get_where('user', ['id' == $user])->result_array();
+    public function get_gurumengajarid($datasession)
+    {   
+        $user = $this->session->userdata('user');
+        $this->db->select('id','nama');
+        $this->db->where('id'== $user);
+        $this->db->from('user');
+        $query = $this->db->get();
+        return $query->result_array();
+        
+        // return $this->db->get_where('user', ['username' == $user])->result_array();
     }
 
 
@@ -23,7 +29,7 @@ class Gurumengajarmodel extends CI_Model
         $this->db->join('tapel', 'tapel.id = gurumengajar.tapelid');
         $this->db->join('semester', 'semester.id = gurumengajar.semesterid');
         $this->db->where('gurumengajar.is_active', 1);
-        $this->db->order_by('userid', 'ASC');
+        $this->db->order_by('user.id', 'ASC');
         $result = $this->db->get();
         return $result->result_array();
     }
