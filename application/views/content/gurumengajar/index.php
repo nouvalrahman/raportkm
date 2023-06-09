@@ -31,7 +31,7 @@
             <div class="col-sm-4">
                 <div class="card">
                     <div class="card-body">
-                        <form action="<?= base_url('Gurumengajar/setguru'); ?>" method="POST">
+                        <form action="<?= base_url('Gurumengajar/index'); ?>" method="POST">
                             <div class="row g-2">
                                 <div class="col mt-5 mb-3">
                                     <label for="type" class="form-label">Pilih Guru</label>
@@ -66,7 +66,7 @@
                                 </div>
                             </div>
                             <div class="float-end">
-                                <a href="<?= base_url('Gurumengajar/index') ?>"
+                                <a href="<?= base_url('Gurumengajar/unset') ?>"
                                     class="btn btn-secondary mt-2">Cancel</a>
                                 <button type="submit" class="btn btn-primary mt-2">Selanjutnya</button>
                             </div>
@@ -78,29 +78,43 @@
                 <div class="card">
                     <div class="card-body">
                         <form action="<?= base_url('Gurumengajar/tambah'); ?>" method="POST">
+
+                        
+
                             <div class="row g-2">
                                 <div class="col mt-2 mb-3">
                                     <label for="type" class="form-label">Nama Guru</label>
+                                    <?php foreach($userid as $us): ?>
+                                    <input type="hidden" id="userid" name="userid" class="form-control"
+                                        value="" placeholder="Pilih Guru"  readonly />
                                     <input type="text" id="userid" name="userid" class="form-control"
-                                        value="<?= $this->session->userdata('user') ?>" placeholder="Pilih Guru"  readonly />
+                                        value="<?=$us['nama'] ?>" placeholder="Pilih Guru"  readonly />
                                     <?= form_error('userid', '<small class="text-danger">', '</small>') ?>
+                                    <?php endforeach ?>
                                 </div>
                             </div>
                             <div class="row g-2">
                                 <div class="col mt-2 mb-3">
                                     <label for="type" class="form-label">Tahun Pelajaran</label>
-                                    <input type="text" id="tapelid" name="tapelid" class="form-control"
+                                    <?php foreach($tapelid as $tp):?>
+                                    <input type="hidden" id="tapelid" name="tapelid" class="form-control"
                                         value="<?= $this->session->userdata('tapel') ?>" placeholder="Pilih Tahun Pelajaran"  readonly />
+                                    <input type="text" id="tapelid" name="tapelid" class="form-control"
+                                        value="<?= $tp['tahunpelajaran'] ?>" placeholder="Pilih Tahun Pelajaran"  readonly />
                                     <?= form_error('tapelid', '<small class="text-danger">', '</small>') ?>
+                                    <?php endforeach ?>
                                 </div>
                             </div>
                             <div class="row g-2">
                                 <div class="col mt-2 mb-3">
                                     <label for="type" class="form-label">Semester</label>
+                                    <?php foreach($smtid as $smt) : ?>
+                                    <input type="hidden" id="semesterid" name="semesterid" class="form-control"
+                                        value="<?= $this->session->userdata('semester') ?>" placeholder="Pilih Semester" readonly />
                                     <input type="text" id="semesterid" name="semesterid" class="form-control"
-                                        value="<?= $this->session->userdata('semester') ?>" placeholder="Pilih Semester"
-                                         readonly />
+                                        value="<?= $smt['semester'] ?>" placeholder="Pilih Semester" readonly />
                                     <?= form_error('semesterid', '<small class="text-danger">', '</small>') ?>
+                                    <?php endforeach ?>
                                 </div>
                             </div>
                             <div class="row g-2">
@@ -126,10 +140,11 @@
                                 </div>
                             </div>
                             <div class="float-end">
-                                <a href="<?= base_url('Gurumengajar/unset') ?>"
+                                <a href="<?= $unset ?>"
                                     class="btn btn-secondary mt-2">Cancel</a>
                                 <button type="submit" class="btn btn-primary mt-2">Tambah</button>
                             </div>
+                            
                         </form>
                     </div>
                 </div>

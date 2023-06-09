@@ -36,21 +36,36 @@ class Gurumengajar extends CI_Controller
             //     'tapel' => $this->input->get('tahunpelajaran'),
             //     'semester' => $this->input->get('semesterid'),
             // ];
-        $data['title'] = "Guru Mengajar - E-Raport";
-        $data['guru'] = $this->usermodel->get_guru();
-        $data['mapel'] = $this->mapelmodel->get_mapel();
-        // $datauser = $this->db->get_where('user', ['username' == $data['user']]);
-        $data['tapel'] = $this->tapelmodel->get_tapel();
-        $data['kelas'] = $this->kelasmodel->get_kelas();
-        $data['semester'] = $this->tapelmodel->get_semester();
-        $data['gurumengajar'] = $this->gurumengajarmodel->join_guru_mapel_kelas_tapel_semester();
-        // $data['gurumengajarid'] = $this->gurumengajarmodel->get_gurumengajarid();
-        $this->load->view('layout/header', $data);
-        $this->load->view('content/gurumengajar/index', $data);
-        $this->load->view('layout/sidebar', $data);
-        $this->load->view('layout/footer', $data);
-        // var_dump($data['gurumengajarid']);
-        // die;
+            $datasession = [
+                'user' => $this->input->post('userid'),
+                'tapel' => $this->input->post('tapelid'),
+                'semester' => $this->input->post('semesterid'),
+                ];
+    
+                $user = $this->session->userdata('user');
+                $tapel = $this->session->userdata('tapel');
+                $semester = $this->session->userdata('semester');
+           
+                $this->session->set_userdata($datasession);
+                $data['title'] = "Guru Mengajar - E-Raport";
+                $data['mapel'] = $this->mapelmodel->get_mapel();
+                $data['guru'] = $this->usermodel->get_guru();
+                $data['tapel'] = $this->tapelmodel->get_tapel();
+                $data['kelas'] = $this->kelasmodel->get_kelas();
+                $data['semester'] = $this->tapelmodel->get_semester();
+                $data['gurumengajar'] = $this->gurumengajarmodel->join_guru_mapel_kelas_tapel_semester();
+                $data['userid'] = $this->gurumengajarmodel->get_userid($user);
+                $data['tapelid'] = $this->gurumengajarmodel->get_tapelid($tapel);
+                $data['smtid'] = $this->gurumengajarmodel->get_semesterid($semester);
+                $data['unset'] = $this->session->unset_userdata($datasession);
+                $this->load->view('layout/header', $data);
+                $this->load->view('content/gurumengajar/index', $data);
+                $this->load->view('layout/sidebar', $data);
+                $this->load->view('layout/footer', $data);
+                // var_dump($data['smtid']);
+                // die;
+                
+        
     }
 
     public function tambah()
@@ -148,8 +163,11 @@ class Gurumengajar extends CI_Controller
             'user' => $this->input->post('userid'),
             'tapel' => $this->input->post('tapelid'),
             'semester' => $this->input->post('semesterid'),
-            'nama' => $this->usermodel->get_user('nama')
             ];
+
+            $user = $this->session->userdata('user');
+            $tapel = $this->session->userdata('tapel');
+            $semester = $this->session->userdata('semester');
 
             // $namasesi = [
             //     'nama' => $this->db->get_where('user', 'id' == $datasession['user'])->result_array()
@@ -165,16 +183,18 @@ class Gurumengajar extends CI_Controller
             $data['mapel'] = $this->mapelmodel->get_mapel();
             $data['guru'] = $this->usermodel->get_guru();
             $data['tapel'] = $this->tapelmodel->get_tapel();
-            $data['sessi'] = $this->db->get_where('user', 'id' == $datasession['user'])->result_array();
             $data['kelas'] = $this->kelasmodel->get_kelas();
             $data['semester'] = $this->tapelmodel->get_semester();
             $data['gurumengajar'] = $this->gurumengajarmodel->join_guru_mapel_kelas_tapel_semester();
-            // $data['gurumengajarid'] = $this->gurumengajarmodel->get_gurumengajarid();
+            $data['userid'] = $this->gurumengajarmodel->get_userid($user);
+            $data['tapelid'] = $this->gurumengajarmodel->get_tapelid($tapel);
+            $data['smtid'] = $this->gurumengajarmodel->get_semesterid($semester);
+            $data['unset'] = $this->session->unset_userdata($datasession);
             $this->load->view('layout/header', $data);
             $this->load->view('content/gurumengajar/index', $data);
             $this->load->view('layout/sidebar', $data);
             $this->load->view('layout/footer', $data);
-            // var_dump($data['gurumengajarid']);
+            // var_dump($data['smtid']);
             // die;
         }
     }
@@ -184,7 +204,6 @@ class Gurumengajar extends CI_Controller
         $data['title'] = "Guru Mengajar - E-Raport";
         $data['guru'] = $this->usermodel->get_guru();
         $data['mapel'] = $this->mapelmodel->get_mapel();
-        $data['unset'] = $this->session->unset_userdata($datasession);
         $data['tapel'] = $this->tapelmodel->get_tapel();
         $data['kelas'] = $this->kelasmodel->get_kelas();
         $data['semester'] = $this->tapelmodel->get_semester();
