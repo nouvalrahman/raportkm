@@ -6,30 +6,51 @@ class Gurumengajarmodel extends CI_Model
     {
         return $this->db->get_where('gurumengajar', ['is_active' => 1])->result_array();
     }
+    public function get_gurumengajarid($user)
+    {
+        $this->db->where('userid', $user);
+        $get_guru = $this->db->get('gurumengajar');
+        return $get_guru->result_array();
+    }
     public function get_userid($user)
-    {   
+    {
 
         $this->db->where('id', $user);
-        $query  = $this->db->get('user');
+        $query = $this->db->get('user');
         return $query->result_array();
     }
     public function get_tapelid($tapel)
-    {   
+    {
 
         $this->db->where('id', $tapel);
-        $get_tapel  = $this->db->get('tapel');
+        $get_tapel = $this->db->get('tapel');
         return $get_tapel->result_array();
     }
     public function get_semesterid($semester)
-    {   
+    {
 
         $this->db->where('id', $semester);
-        $get_smt  = $this->db->get('semester');
+        $get_smt = $this->db->get('semester');
         return $get_smt->result_array();
+    }
+    public function get_kelasid($kelas)
+    {
+
+        $this->db->where('id', $kelas);
+        $get_kls = $this->db->get('kelas');
+        return $get_kls->result_array();
+    }
+    public function get_mapelid($mapel)
+    {
+
+        $this->db->where('id', $mapel);
+        $get_mapel = $this->db->get('mapel');
+        return $get_mapel->result_array();
     }
 
 
-    public function join_guru_mapel_kelas_tapel_semester()
+
+    public function join_guru_mapel_kelas_tapel_semester($user)
     {
         $this->db->select('*');
         $this->db->from('gurumengajar');
@@ -39,7 +60,8 @@ class Gurumengajarmodel extends CI_Model
         $this->db->join('tapel', 'tapel.id = gurumengajar.tapelid');
         $this->db->join('semester', 'semester.id = gurumengajar.semesterid');
         $this->db->where('gurumengajar.is_active', 1);
-        $this->db->order_by('user.id', 'ASC');
+        $this->db->where('gurumengajar.userid', $user);
+        $this->db->order_by($user, 'ASC');
         $result = $this->db->get();
         return $result->result_array();
     }
