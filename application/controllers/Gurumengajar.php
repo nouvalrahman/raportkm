@@ -36,17 +36,17 @@ class Gurumengajar extends CI_Controller
         //     'tapel' => $this->input->get('tahunpelajaran'),
         //     'semester' => $this->input->get('semesterid'),
         // ];
-        $datasession = [
-            'user' => $this->input->post('userid'),
-            'tapel' => $this->input->post('tapelid'),
-            'semester' => $this->input->post('semesterid'),
-        ];
+        // $datasession = [
+        //     'user' => $this->input->post('userid'),
+        //     'tapel' => $this->input->post('tapelid'),
+        //     'semester' => $this->input->post('semesterid'),
+        // ];
 
-        $user = $this->session->userdata('user');
-        $tapel = $this->session->userdata('tapel');
-        $semester = $this->session->userdata('semester');
+        $user = $this->input->get('userid');
+        $tapel = $this->input->get('tapelid');
+        $semester = $this->input->get('semesterid');
 
-        $this->session->set_userdata($datasession);
+        // $this->session->set_userdata($datasession);
         $data['title'] = "Guru Mengajar - E-Raport";
         $data['mapel'] = $this->mapelmodel->get_mapel();
         $data['guru'] = $this->usermodel->get_guru();
@@ -57,7 +57,7 @@ class Gurumengajar extends CI_Controller
         $data['userid'] = $this->gurumengajarmodel->get_userid($user);
         $data['tapelid'] = $this->gurumengajarmodel->get_tapelid($tapel);
         $data['smtid'] = $this->gurumengajarmodel->get_semesterid($semester);
-        $data['unset'] = $this->session->unset_userdata($datasession);
+        // $data['unset'] = $this->session->unset_userdata($datasession);
         $data['gumengid'] = $this->gurumengajarmodel->get_gurumengajarid($user);
         $this->load->view('layout/header', $data);
         $this->load->view('content/gurumengajar/index', $data);
@@ -112,14 +112,17 @@ class Gurumengajar extends CI_Controller
             ]
         );
 
-
+        $user = $this->input->get('userid');
+        $tapel = $this->input->get('tapelid');
+        $semester = $this->input->get('semesterid');
+        
         if ($this->form_validation->run() == FALSE) {
             $this->session->set_flashdata('message_error', 'Terdapat Data yang kosong, Silahkan Lengkapi data ');
-            redirect('Gurumengajar/index');
+            redirect('Gurumengajar/index?'. 'userid=' . $user . '&tapelid' . $tapel . 'semesterid' . $semester);
         } else {
-            $this->gurumengajarmodel->tambah();
             $this->session->set_flashdata('message', 'Data Berhasil Ditambahkan');
-            redirect('Gurumengajar/setguru');
+            $this->gurumengajarmodel->tambah();
+            redirect('Gurumengajar/index?'. 'userid=' . $user . '&tapelid=' . $tapel . '&semesterid=' . $semester);
         }
 
     }
